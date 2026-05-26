@@ -1,6 +1,8 @@
 ---
 data: 16 Marzo 2026
-coordinate: ....
+coordinate: 43.112442,12.414926
+descrizione_breve: Punto attraversato dal suono continuo dell’acqua e dalla vegetazione che accompagna il cammino.
+percentuale: 0.5
 ---
 
-Il paesaggio sonoro è dominato dalla presenza urbana: il traffico veicolare, il passaggio discontinuo delle automobili e le voci dei passanti costruiscono un ambiente acustico denso e frammentato. La città emerge attraverso frequenze costanti e rumorimeccanici che segnano l’inizio del cammino.
+Il suono dell’acqua assume qui una presenza dominante. Il flusso del fosso, più intenso e ravvicinato, produce una trama sonora continua e avvolgente, accompagnata dai riverberi dell’ambiente umido e dalla vegetazione circostante.

@@ -1,6 +1,9 @@
 ---
 data: 16 Marzo 2026
-coordinate: ....
+coordinate: 43.112663,12.401174
+descrizione_breve: Luogo di sosta dove le lavandaie si lavavano i piedi prima di rientrare in città.
+percentuale: 0.2
 ---
 
-Il paesaggio sonoro è dominato dalla presenza urbana: il traffico veicolare, il passaggio discontinuo delle automobili e le voci dei passanti costruiscono un ambiente acustico denso e frammentato. La città emerge attraverso frequenze costanti e rumorimeccanici che segnano l’inizio del cammino.
+Il suono continuo dell’acqua che sgorga dalla fontana si intreccia con i rumori della strada e il passaggio sporadico delle automobili. 
+La registrazione restituisce una dimensione di pausa e attraversamento, in cui la presenza della città convive ancora con gli elementi naturali dell’acqua.
