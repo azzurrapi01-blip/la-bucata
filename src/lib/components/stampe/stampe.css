@@ -50,6 +50,7 @@
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	gap: 1.5rem;
+	align-items: stretch;
 }
 
 .stampe__grid--preview {
@@ -58,21 +59,24 @@
 }
 
 .stampe__card {
-	background: var(--stampe-card);
+	width: 100%;
+	aspect-ratio: 3 / 4;
+	background: #ffffff;
 	border: none;
 	cursor: pointer;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	aspect-ratio: 3 / 4;
-	padding: 1.5rem;
+	overflow: hidden;
+	padding: 1rem;
 }
 
 .stampe__card img {
 	display: block;
-	max-height: 100%;
-	max-width: 100%;
+	width: 100%;
+	height: 100%;
 	object-fit: contain;
+	object-position: center;
 }
 
 .stampe__cta {
