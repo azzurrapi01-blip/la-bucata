@@ -6,6 +6,20 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
+		rel="stylesheet"
+	/>
 </svelte:head>
 
 {@render children()}
+
+<style>
+	:global(body) {
+		margin: 0;
+		color: #000000;
+		font-family: 'Lora', Georgia, 'Times New Roman', serif;
+	}
+</style>
