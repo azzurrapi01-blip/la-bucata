@@ -4,6 +4,7 @@
 	import StampeLightbox from './StampeLightbox.svelte';
 	import { STAMPE_CTA, STAMPE_INTRO, STAMPE_TITLE } from '$lib/stampe/constants';
 	import { pickRandom } from '$lib/stampe/random';
+	import { base } from '$app/paths';
 	import './stampe.css';
 
 	type Props = {
@@ -19,6 +20,8 @@
 	onMount(() => {
 		previewImages = pickRandom(allImages, 2);
 	});
+
+	const stampeHref = `${base.replace(/\/$/, '')}/stampe`;
 
 	function openLightbox(index: number) {
 		lightboxIndex = index;
@@ -43,7 +46,7 @@
 		</div>
 	{/if}
 
-	<a class="stampe__cta" href="/stampe">{STAMPE_CTA}</a>
+	<a class="stampe__cta" href={stampeHref}>{STAMPE_CTA}</a>
 
 	<StampeLightbox
 		open={lightboxOpen}
