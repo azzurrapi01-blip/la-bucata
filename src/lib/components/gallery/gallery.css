@@ -1,0 +1,48 @@
+.gallery {
+	--filter-active-bg: #ffffff;
+	--section-bg: #e5c76b;
+	--section-text: #000000;
+
+	background: var(--section-bg);
+	color: var(--section-text);
+	padding: 3rem 1.5rem;
+}
+
+.gallery__title {
+	font-size: clamp(2rem, 4vw, 3rem);
+	font-weight: 700;
+	margin: 0 0 1rem;
+}
+
+.gallery__intro {
+	font-size: 1.125rem;
+	line-height: 1.6;
+	margin: 0 0 2rem;
+	max-width: 42rem;
+}
+
+.gallery__intro p {
+	margin: 0;
+}
+
+.gallery__grid--preview {
+	margin-bottom: 2rem;
+}
+
+.gallery__stack {
+	max-width: 56rem;
+}
+
+.gallery .media-grid__default-cell img {
+	object-fit: cover;
+	width: 100%;
+}
+
+.gallery__cta {
+	background: var(--section-text);
+	color: var(--filter-active-bg);
+	display: inline-block;
+	font: inherit;
+	padding: 0.75rem 1.25rem;
+	text-decoration: none;
+}
