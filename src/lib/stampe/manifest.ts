@@ -1,35 +1,39 @@
-import { existsSync, readdirSync } from 'node:fs';
-import { join } from 'node:path';
 import { CATEGORY_LABELS, CATEGORY_ORDER } from './constants';
 import type { StampeCategory, StampeManifest } from './types';
 
-const STAMPE_ROOT = 'static/stampe';
+const imageModules = import.meta.glob('/src/lib/content/stampe/**/*.{jpg,jpeg,png,webp}', {
+	eager: true,
+	query: '?url',
+	import: 'default'
+}) as Record<string, string>;
+
 const IMAGE_EXT = /\.(jpe?g|png|webp)$/i;
+const CATEGORY_SEGMENT = /\/stampe\/([^/]+)\//;
 
 function joinBaseUrl(basePath: string, urlPath: string): string {
 	const normalizedBase = basePath.replace(/\/$/, '');
 	if (!normalizedBase) return urlPath;
 
-	// `urlPath` is always absolute (starts with `/`) for our usage below.
 	return `${normalizedBase}${urlPath}`;
 }
 
-function listImages(categoryId: string, cwd: string, basePath: string): string[] {
-	const dir = join(cwd, STAMPE_ROOT, categoryId);
-	if (!existsSync(dir)) return [];
-
-	return readdirSync(dir)
-		.filter((file) => IMAGE_EXT.test(file))
-		.sort((a, b) => a.localeCompare(b))
-		.map((file) => joinBaseUrl(basePath, `/stampe/${categoryId}/${file}`));
+function categoryIdFromPath(path: string): string | null {
+	return path.match(CATEGORY_SEGMENT)?.[1] ?? null;
 }
 
-export function buildStampeManifest(cwd = process.cwd(), basePath = ''): StampeManifest {
-	const allImages = listImages('tutte', cwd, basePath);
+function listImages(categoryId: string, basePath: string): string[] {
+	return Object.entries(imageModules)
+		.filter(([path]) => IMAGE_EXT.test(path) && categoryIdFromPath(path) === categoryId)
+		.sort(([a], [b]) => a.localeCompare(b))
+		.map(([, url]) => joinBaseUrl(basePath, url));
+}
+
+export function buildStampeManifest(basePath = ''): StampeManifest {
+	const allImages = listImages('tutte', basePath);
 
 	const categories = (CATEGORY_ORDER as readonly string[])
 		.map((id) => {
-			const images = listImages(id, cwd, basePath);
+			const images = listImages(id, basePath);
 			if (images.length === 0) return null;
 
 			return {
@@ -42,4 +46,3 @@ export function buildStampeManifest(cwd = process.cwd(), basePath = ''): StampeM
 
 	return { categories, allImages };
 }
-
