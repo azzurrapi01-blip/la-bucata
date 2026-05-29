@@ -10,30 +10,23 @@ const imageModules = import.meta.glob('/src/lib/content/stampe/**/*.{jpg,jpeg,pn
 const IMAGE_EXT = /\.(jpe?g|png|webp)$/i;
 const CATEGORY_SEGMENT = /\/stampe\/([^/]+)\//;
 
-function joinBaseUrl(basePath: string, urlPath: string): string {
-	const normalizedBase = basePath.replace(/\/$/, '');
-	if (!normalizedBase) return urlPath;
-
-	return `${normalizedBase}${urlPath}`;
-}
-
 function categoryIdFromPath(path: string): string | null {
 	return path.match(CATEGORY_SEGMENT)?.[1] ?? null;
 }
 
-function listImages(categoryId: string, basePath: string): string[] {
+function listImages(categoryId: string): string[] {
 	return Object.entries(imageModules)
 		.filter(([path]) => IMAGE_EXT.test(path) && categoryIdFromPath(path) === categoryId)
 		.sort(([a], [b]) => a.localeCompare(b))
-		.map(([, url]) => joinBaseUrl(basePath, url));
+		.map(([, url]) => url);
 }
 
-export function buildStampeManifest(basePath = ''): StampeManifest {
-	const allImages = listImages('tutte', basePath);
+export function buildStampeManifest(): StampeManifest {
+	const allImages = listImages('tutte');
 
 	const categories = (CATEGORY_ORDER as readonly string[])
 		.map((id) => {
-			const images = listImages(id, basePath);
+			const images = listImages(id);
 			if (images.length === 0) return null;
 
 			return {
