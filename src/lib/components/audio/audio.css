@@ -1,0 +1,170 @@
+.audio {
+	--section-bg: #e8d6b9;
+	--section-text: #000000;
+	--play-button-bg: #ffffff;
+
+	background: var(--section-bg);
+	color: var(--section-text);
+	padding: 3rem 1.5rem;
+}
+
+.audio--preview .audio__header {
+	align-items: flex-start;
+	display: flex;
+	gap: 1.5rem;
+	justify-content: space-between;
+	margin-bottom: 1rem;
+}
+
+.audio--preview .audio__title {
+	flex: 1 1 auto;
+	font-size: clamp(2rem, 4vw, 3rem);
+	font-weight: 700;
+	margin: 0;
+	min-width: 0;
+}
+
+.audio--preview .audio__link {
+	color: inherit;
+	flex: 0 0 auto;
+	font-size: 1rem;
+	line-height: 1.4;
+	margin-top: 0.35rem;
+	text-align: right;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.audio--preview .audio__link:hover {
+	text-decoration: underline;
+}
+
+.audio--preview .audio__intro {
+	font-size: 1.125rem;
+	line-height: 1.6;
+	margin: 0 0 1.5rem;
+	max-width: 42rem;
+}
+
+.audio--preview .audio__spectrogram-wrap {
+	margin: 0 auto;
+	max-width: 56rem;
+}
+
+.audio__title {
+	font-size: clamp(2rem, 4vw, 3rem);
+	font-weight: 700;
+	margin: 0 0 1rem;
+}
+
+.audio__intro {
+	font-size: 1.125rem;
+	line-height: 1.6;
+	margin: 0 0 2rem;
+	max-width: 42rem;
+}
+
+.audio__intro p {
+	margin: 0;
+}
+
+.audio__list {
+	margin: 0 auto;
+	max-width: 56rem;
+}
+
+.audio__divider {
+	border: 0;
+	border-top: 1px solid var(--section-text);
+	margin: 2.5rem 0;
+}
+
+.audio-recording + .audio-recording,
+.audio__divider + .audio-recording {
+	margin-top: 0;
+}
+
+.audio-recording__title {
+	font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+	font-weight: 700;
+	margin: 0 0 1.25rem;
+}
+
+.audio-recording__grid {
+	display: grid;
+	gap: 1.5rem 2rem;
+	grid-template-columns: minmax(10rem, 14rem) minmax(0, 1fr);
+	margin-bottom: 1.25rem;
+}
+
+.audio-recording__meta {
+	font-size: 0.9375rem;
+	line-height: 1.5;
+	margin: 0;
+}
+
+.audio-recording__meta p {
+	margin: 0;
+}
+
+.audio-recording__meta p + p {
+	margin-top: 0.35rem;
+}
+
+.audio-recording__body {
+	font-size: 1rem;
+	line-height: 1.6;
+	margin: 0;
+}
+
+.audio-recording__play {
+	align-items: center;
+	background: var(--play-button-bg);
+	border: 1px solid var(--section-text);
+	border-radius: 50%;
+	color: var(--section-text);
+	cursor: pointer;
+	display: inline-flex;
+	height: 2.75rem;
+	justify-content: center;
+	margin: 0 0 1.25rem;
+	padding: 0;
+	width: 2.75rem;
+}
+
+.audio-recording__play:hover {
+	opacity: 0.9;
+}
+
+.audio-recording__play:focus-visible {
+	outline: 2px solid var(--section-text);
+	outline-offset: 3px;
+}
+
+.audio-recording__play-icon {
+	display: block;
+	height: 0.9rem;
+	width: 0.9rem;
+}
+
+.audio-recording__spectrogram {
+	display: block;
+	height: auto;
+	width: 100%;
+}
+
+@media (max-width: 640px) {
+	.audio--preview .audio__header {
+		flex-direction: column;
+	}
+
+	.audio--preview .audio__link {
+		margin-top: 0;
+		text-align: left;
+		white-space: normal;
+	}
+
+	.audio-recording__grid {
+		grid-template-columns: 1fr;
+	}
+}
