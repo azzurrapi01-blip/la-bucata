@@ -6,6 +6,8 @@
 		images: string[];
 		index: number;
 		navigable?: boolean;
+		imageAlt?: string;
+		dialogLabel?: string;
 		onClose: () => void;
 		onIndexChange?: (index: number) => void;
 	};
@@ -15,6 +17,8 @@
 		images,
 		index,
 		navigable = false,
+		imageAlt = 'Immagine ingrandita',
+		dialogLabel = 'Anteprima immagine',
 		onClose,
 		onIndexChange
 	}: Props = $props();
@@ -69,29 +73,28 @@
 
 {#if open}
 	<div
-		class="stampe-lightbox"
+		class="media-lightbox"
 		role="dialog"
 		aria-modal="true"
-		aria-label="Anteprima stampa"
+		aria-label={dialogLabel}
 		tabindex="-1"
 		onclick={(event) => {
 			if (event.target === event.currentTarget) onClose();
 		}}
 		onkeydown={(event) => {
-			// Keyboard users can close with Escape on top of the global handler.
 			if (event.key === 'Escape') onClose();
 		}}
 		ontouchstart={handleTouchStart}
 		ontouchend={handleTouchEnd}
 	>
-		<button type="button" class="stampe-lightbox__close" aria-label="Chiudi" onclick={onClose}>
+		<button type="button" class="media-lightbox__close" aria-label="Chiudi" onclick={onClose}>
 			×
 		</button>
 
 		{#if canGoPrev}
 			<button
 				type="button"
-				class="stampe-lightbox__nav stampe-lightbox__nav--prev"
+				class="media-lightbox__nav media-lightbox__nav--prev"
 				aria-label="Immagine precedente"
 				onclick={goPrev}
 			>
@@ -99,12 +102,12 @@
 			</button>
 		{/if}
 
-		<img class="stampe-lightbox__image" src={currentSrc} alt="Stampa botanica ingrandita" />
+		<img class="media-lightbox__image" src={currentSrc} alt={imageAlt} />
 
 		{#if canGoNext}
 			<button
 				type="button"
-				class="stampe-lightbox__nav stampe-lightbox__nav--next"
+				class="media-lightbox__nav media-lightbox__nav--next"
 				aria-label="Immagine successiva"
 				onclick={goNext}
 			>
@@ -115,7 +118,7 @@
 {/if}
 
 <style>
-	.stampe-lightbox {
+	.media-lightbox {
 		align-items: center;
 		background: rgb(0 0 0 / 85%);
 		display: flex;
@@ -125,14 +128,14 @@
 		z-index: 1000;
 	}
 
-	.stampe-lightbox__image {
+	.media-lightbox__image {
 		max-height: 90vh;
 		max-width: min(90vw, 56rem);
 		object-fit: contain;
 	}
 
-	.stampe-lightbox__close,
-	.stampe-lightbox__nav {
+	.media-lightbox__close,
+	.media-lightbox__nav {
 		background: transparent;
 		border: none;
 		color: white;
@@ -142,17 +145,16 @@
 		position: absolute;
 	}
 
-	.stampe-lightbox__close {
+	.media-lightbox__close {
 		right: 1rem;
 		top: 1rem;
 	}
 
-	.stampe-lightbox__nav--prev {
+	.media-lightbox__nav--prev {
 		left: 1rem;
 	}
 
-	.stampe-lightbox__nav--next {
+	.media-lightbox__nav--next {
 		right: 1rem;
 	}
 </style>
-

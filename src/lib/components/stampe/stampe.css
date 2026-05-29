@@ -1,6 +1,6 @@
 .stampe {
+	--filter-active-bg: #8a9a4a;
 	--stampe-bg: #b9c678;
-	--stampe-filter-active: #8a9a4a;
 	--stampe-text: #000000;
 	--stampe-card: #ffffff;
 
@@ -26,34 +26,7 @@
 	margin: 0;
 }
 
-.stampe__filters {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 0.75rem 1.25rem;
-	margin-bottom: 2rem;
-}
-
-.stampe__filter {
-	background: none;
-	border: none;
-	color: var(--stampe-text);
-	cursor: pointer;
-	font: inherit;
-	padding: 0.35rem 0.75rem;
-}
-
-.stampe__filter--active {
-	background: var(--stampe-filter-active);
-}
-
-.stampe__grid {
-	display: grid;
-	grid-template-columns: repeat(3, minmax(0, 1fr));
-	gap: 1.5rem;
-}
-
 .stampe__grid--preview {
-	grid-template-columns: repeat(2, minmax(0, 1fr));
 	margin-bottom: 2rem;
 }
 
@@ -83,25 +56,3 @@
 	padding: 0.75rem 1.25rem;
 	text-decoration: none;
 }
-
-.stampe__grid--fading {
-	opacity: 0;
-	transition: opacity 200ms ease;
-}
-
-@media (max-width: 900px) {
-	.stampe__grid {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-	}
-}
-
-@media (max-width: 600px) {
-	.stampe__grid {
-		grid-template-columns: 1fr;
-	}
-
-	.stampe__grid--preview {
-		grid-template-columns: 1fr;
-	}
-}
-

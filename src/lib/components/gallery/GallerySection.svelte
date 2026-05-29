@@ -1,13 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import StampeCard from './StampeCard.svelte';
 	import SectionHeading from '$lib/components/ui/SectionHeading.svelte';
 	import MediaGrid from '$lib/components/ui/MediaGrid.svelte';
 	import MediaLightbox from '$lib/components/ui/MediaLightbox.svelte';
-	import { STAMPE_CTA, STAMPE_INTRO, STAMPE_TITLE } from '$lib/stampe/constants';
+	import { GALLERY_CTA, GALLERY_INTRO, GALLERY_TITLE } from '$lib/gallery/constants';
 	import { pickRandom } from '$lib/stampe/random';
 	import { base } from '$app/paths';
-	import './stampe.css';
+	import './gallery.css';
 
 	type Props = {
 		allImages: string[];
@@ -20,10 +19,10 @@
 	let lightboxIndex = $state(0);
 
 	onMount(() => {
-		previewImages = pickRandom(allImages, 2);
+		previewImages = pickRandom(allImages, 4);
 	});
 
-	const stampeHref = `${base.replace(/\/$/, '')}/stampe`;
+	const galleryHref = `${base.replace(/\/$/, '')}/gallery`;
 
 	function openLightbox(index: number) {
 		lightboxIndex = index;
@@ -31,31 +30,34 @@
 	}
 </script>
 
-<section class="stampe">
+<section class="gallery">
 	<SectionHeading
-		title={STAMPE_TITLE}
-		intro={STAMPE_INTRO}
-		titleClass="stampe__title"
-		introClass="stampe__intro"
+		title={GALLERY_TITLE}
+		intro={GALLERY_INTRO}
+		titleClass="gallery__title"
+		introClass="gallery__intro"
 	/>
 
 	{#if previewImages.length > 0}
-		<MediaGrid images={previewImages} layout="grid-2" class="stampe__grid--preview">
-			{#snippet cell({ src, index })}
-				<StampeCard {src} onClick={() => openLightbox(index)} />
-			{/snippet}
-		</MediaGrid>
+		<MediaGrid
+			images={previewImages}
+			layout="grid-2x2"
+			class="gallery__grid--preview"
+			imageAlt="Fotografia del percorso"
+			onImageClick={openLightbox}
+		/>
 	{/if}
 
-	<a class="stampe__cta" href={stampeHref}>{STAMPE_CTA}</a>
+	<a class="gallery__cta" href={galleryHref}>{GALLERY_CTA}</a>
 
 	<MediaLightbox
 		open={lightboxOpen}
 		images={previewImages}
 		index={lightboxIndex}
-		navigable={false}
-		imageAlt="Stampa botanica ingrandita"
-		dialogLabel="Anteprima stampa"
+		navigable={true}
+		imageAlt="Fotografia del percorso ingrandita"
+		dialogLabel="Anteprima fotografia"
 		onClose={() => (lightboxOpen = false)}
+		onIndexChange={(nextIndex) => (lightboxIndex = nextIndex)}
 	/>
 </section>
