@@ -20,7 +20,7 @@ describe('buildAudioManifest', () => {
 		const { recordings } = buildAudioManifest();
 
 		for (const recording of recordings) {
-			expect(recording.audioSrc).toMatch(/\.wav$/i);
+			expect(recording.audioSrc).toMatch(/\.mp3$/i);
 			expect(recording.spectrogramSrc).toMatch(/\.png$/i);
 			expect(recording.body.length).toBeGreaterThan(0);
 			expect(recording.luogo.length).toBeGreaterThan(0);

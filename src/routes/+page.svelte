@@ -1,6 +1,7 @@
 <script lang="ts">
 	import AudioSection from '$lib/components/audio/AudioSection.svelte';
 	import GallerySection from '$lib/components/gallery/GallerySection.svelte';
+	import PercorsoSection from '$lib/components/percorso/PercorsoSection.svelte';
 	import RaccoltaSection from '$lib/components/raccolta/RaccoltaSection.svelte';
 	import StampeSection from '$lib/components/stampe/StampeSection.svelte';
 
@@ -8,6 +9,7 @@
 </script>
 
 <AudioSection recordings={data.audioRecordings} />
+<PercorsoSection manifest={data.percorsoManifest} />
 <GallerySection allImages={data.galleryAllImages} />
 <StampeSection allImages={data.stampeAllImages} />
 <RaccoltaSection allItems={data.raccoltaAllItems} />
