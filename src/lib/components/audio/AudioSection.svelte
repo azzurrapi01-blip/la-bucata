@@ -58,7 +58,6 @@
 <section class="audio audio--preview">
 	<header class="audio__header">
 		<h2 class="audio__title">{AUDIO_TITLE}</h2>
-		<a class="audio__link" href={audioHref}>{AUDIO_PREVIEW_LINK}</a>
 	</header>
 
 	<p class="audio__intro">{AUDIO_INTRO}</p>
@@ -100,4 +99,6 @@
 			/>
 		</div>
 	{/if}
+
+	<a class="audio__cta" href={audioHref}>{AUDIO_PREVIEW_LINK}</a>
 </section>
