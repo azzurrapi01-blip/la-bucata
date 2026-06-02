@@ -7,7 +7,7 @@ const infoModules = import.meta.glob('/src/lib/content/audio/tappa-*/info.md', {
 	import: 'default'
 }) as Record<string, string>;
 
-const audioModules = import.meta.glob('/src/lib/content/audio/**/*.{wav,WAV}', {
+const audioModules = import.meta.glob('/src/lib/content/audio/**/*.{mp3,MP3}', {
 	eager: true,
 	query: '?url',
 	import: 'default'
@@ -20,7 +20,7 @@ const imageModules = import.meta.glob('/src/lib/content/audio/**/*.{png,PNG}', {
 }) as Record<string, string>;
 
 const TAPPA_SEGMENT = /\/audio\/(tappa-\d+)\//;
-const AUDIO_EXT = /\.wav$/i;
+const AUDIO_EXT = /\.mp3$/i;
 const IMAGE_EXT = /\.png$/i;
 
 function tappaIdFromPath(path: string): string | null {
