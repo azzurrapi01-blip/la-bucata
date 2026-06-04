@@ -4,7 +4,9 @@
 	--play-button-bg: #ffffff;
 
 	background: var(--section-bg);
+	border-radius: var(--section-card-radius, 24px);
 	color: var(--section-text);
+	overflow: hidden;
 	padding: 3rem 1.5rem;
 }
 
@@ -29,6 +31,7 @@
 .audio--preview .audio__spectrogram-wrap {
 	margin: 0 auto;
 	max-width: 56rem;
+	overflow: hidden;
 }
 
 .audio--preview .audio__cta {

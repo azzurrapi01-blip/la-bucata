@@ -5,7 +5,9 @@
 	--stampe-card: #ffffff;
 
 	background: var(--stampe-bg);
+	border-radius: var(--section-card-radius, 24px);
 	color: var(--stampe-text);
+	overflow: hidden;
 	padding: 3rem 1.5rem;
 }
 

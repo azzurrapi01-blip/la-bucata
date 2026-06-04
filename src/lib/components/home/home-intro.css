@@ -1,7 +1,8 @@
 .home-intro {
 	--home-intro-gap: clamp(1.5rem, 3vw, 2.75rem);
 
-	border-radius: 0;
+	border-radius: var(--section-card-radius, 24px);
+	overflow: hidden;
 	padding: var(--home-block-padding-top, clamp(1.25rem, 2.5vw, 2rem)) 0
 		var(--home-block-padding-bottom, 2rem);
 }
@@ -16,6 +17,7 @@
 
 .home-intro__visual {
 	min-height: 0;
+	overflow: hidden;
 	position: relative;
 }
 

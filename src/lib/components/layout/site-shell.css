@@ -5,9 +5,13 @@
 	min-height: 100vh;
 }
 
+.site-shell .site-header__inner {
+	padding-bottom: 0;
+}
+
 .site-shell__main {
 	flex: 1 1 auto;
-	padding: 1rem;
+	padding: 0 clamp(1rem, 3vw, 2.5rem) 1.25rem;
 }
 
 .site-shell__main > :global(section) {

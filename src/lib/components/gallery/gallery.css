@@ -4,7 +4,9 @@
 	--section-text: #000000;
 
 	background: var(--section-bg);
+	border-radius: var(--section-card-radius, 24px);
 	color: var(--section-text);
+	overflow: hidden;
 	padding: 3rem 1.5rem;
 }
 

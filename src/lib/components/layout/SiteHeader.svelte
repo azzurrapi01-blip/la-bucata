@@ -48,7 +48,7 @@
 			aria-label="La Bucata — torna alla copertina"
 			onclick={handleBrandClick}
 		>
-			<img class="site-header__brand-logo" src={heroLogo} alt="" width="44" height="44" />
+			<img class="site-header__brand-logo" src={heroLogo} alt="" width="56" height="56" />
 			<span class="site-header__brand-title">LA BUCATA</span>
 		</a>
 		<nav class="site-header__nav" aria-label="Sezioni del sito">

@@ -1,5 +1,5 @@
 :root {
-	--section-card-radius: 2rem;
+	--section-card-radius: 24px;
 }
 
 :global(section.audio),
@@ -12,7 +12,8 @@
 }
 
 :global(.site-shell__main > section),
-:global(.home__sections > section) {
+:global(.home__sections > section),
+:global(.home__sections > .home-intro) {
 	border-radius: var(--section-card-radius);
 	overflow: hidden;
 }

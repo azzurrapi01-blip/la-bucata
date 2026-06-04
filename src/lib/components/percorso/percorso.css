@@ -5,7 +5,9 @@
 	--cta-text: #ffffff;
 
 	background: var(--section-bg);
+	border-radius: var(--section-card-radius, 24px);
 	color: var(--section-text);
+	overflow: hidden;
 	padding: 3rem 1.5rem;
 }
 
@@ -83,6 +85,7 @@
 
 .percorso-stage__map-wrap {
 	margin: 0;
+	overflow: hidden;
 }
 
 .percorso-stage__map {

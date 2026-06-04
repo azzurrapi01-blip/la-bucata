@@ -5,7 +5,9 @@
 	--raccolta-text: #000000;
 
 	background: var(--raccolta-bg);
+	border-radius: var(--section-card-radius, 24px);
 	color: var(--raccolta-text);
+	overflow: hidden;
 	padding: 3rem 1.5rem;
 }
 

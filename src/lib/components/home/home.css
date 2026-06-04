@@ -45,11 +45,6 @@
 	scroll-margin-top: 1rem;
 }
 
-.home__sections > :global(.home-intro) {
-	border-radius: 0;
-	overflow: visible;
-}
-
 :global(html) {
 	scroll-behavior: smooth;
 }

@@ -28,14 +28,14 @@
 
 .site-header__brand-logo {
 	display: block;
-	height: 2.75rem;
+	height: 3.5rem;
 	object-fit: contain;
 	width: auto;
 }
 
 .site-header__brand-title {
 	font-family: 'GT Walsheim Pro', system-ui, sans-serif;
-	font-size: clamp(1.125rem, 2vw, 1.5rem);
+	font-size: clamp(1.25rem, 2.2vw, 1.75rem);
 	font-weight: 700;
 	letter-spacing: 0.02em;
 	line-height: 1;
