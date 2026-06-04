@@ -14,8 +14,9 @@
 	padding: 0 clamp(1rem, 3vw, 2.5rem) 1.25rem;
 }
 
-.site-shell__main > :global(section) {
+.site-shell .site-shell__main > section {
 	border-radius: var(--section-card-radius, 2rem);
 	overflow: hidden;
+	padding: var(--section-shell-padding);
 	scroll-margin-top: 1rem;
 }

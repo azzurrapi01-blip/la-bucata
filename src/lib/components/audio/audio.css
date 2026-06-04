@@ -7,30 +7,40 @@
 	border-radius: var(--section-card-radius, 24px);
 	color: var(--section-text);
 	overflow: hidden;
-	padding: 3rem 1.5rem;
+}
+
+.home__sections > .audio {
+	padding: var(--section-block-padding);
 }
 
 .audio--preview .audio__header {
 	display: block;
-	margin-bottom: 1rem;
+	margin-bottom: var(--section-title-gap);
 }
 
 .audio--preview .audio__title {
-	font-size: clamp(2rem, 4vw, 3rem);
+	font-size: var(--section-item-title-size);
 	font-weight: 700;
+	line-height: var(--section-item-title-line-height);
 	margin: 0;
+}
+
+.audio--preview .audio__title,
+.audio--preview .audio__intro,
+.audio--preview .audio-playback,
+.audio--preview .audio__spectrogram-wrap {
+	max-width: var(--section-content-max-width, 56rem);
+	width: 100%;
 }
 
 .audio--preview .audio__intro {
 	font-size: 1.125rem;
 	line-height: 1.6;
-	margin: 0 0 1.5rem;
-	max-width: 42rem;
+	margin: 0 0 var(--section-preview-intro-gap);
 }
 
 .audio--preview .audio__spectrogram-wrap {
-	margin: 0 auto;
-	max-width: 56rem;
+	margin: 0;
 	overflow: hidden;
 }
 
@@ -44,17 +54,24 @@
 	text-decoration: none;
 }
 
+.audio__title,
+.audio__intro,
+.audio__list {
+	max-width: var(--section-content-max-width, 56rem);
+	width: 100%;
+}
+
 .audio__title {
-	font-size: clamp(2rem, 4vw, 3rem);
+	font-size: var(--section-item-title-size);
 	font-weight: 700;
-	margin: 0 0 1rem;
+	line-height: var(--section-item-title-line-height);
+	margin: 0 0 var(--section-title-gap);
 }
 
 .audio__intro {
 	font-size: 1.125rem;
 	line-height: 1.6;
-	margin: 0 0 2rem;
-	max-width: 42rem;
+	margin: 0 0 var(--section-intro-gap);
 }
 
 .audio__intro p {
@@ -62,8 +79,7 @@
 }
 
 .audio__list {
-	margin: 0 auto;
-	max-width: 56rem;
+	margin: 0;
 }
 
 .audio__divider {
@@ -78,9 +94,10 @@
 }
 
 .audio-recording__title {
-	font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+	font-size: var(--section-item-title-size);
 	font-weight: 700;
-	margin: 0 0 1.25rem;
+	line-height: var(--section-item-title-line-height);
+	margin: 0 0 var(--section-item-title-gap);
 }
 
 .audio-recording__grid {
@@ -114,13 +131,9 @@
 	align-items: center;
 	display: flex;
 	gap: 1rem;
-	margin: 0 0 1.25rem;
-	max-width: 56rem;
-}
-
-.audio--preview .audio-playback {
-	margin-left: auto;
-	margin-right: auto;
+	margin: 0 0 var(--section-item-title-gap);
+	max-width: var(--section-content-max-width, 56rem);
+	width: 100%;
 }
 
 .audio-playback__play {

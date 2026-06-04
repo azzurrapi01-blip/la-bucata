@@ -7,12 +7,23 @@
 	border-radius: var(--section-card-radius, 24px);
 	color: var(--section-text);
 	overflow: hidden;
-	padding: 3rem 1.5rem;
+}
+
+.home__sections > .gallery {
+	padding: var(--section-block-padding);
+}
+
+.gallery__title,
+.gallery__intro,
+.gallery__stack {
+	max-width: var(--section-content-max-width, 56rem);
+	width: 100%;
 }
 
 .gallery__title {
-	font-size: clamp(2rem, 4vw, 3rem);
+	font-size: var(--section-item-title-size);
 	font-weight: 700;
+	line-height: var(--section-item-title-line-height);
 	margin: 0 0 1rem;
 }
 
@@ -20,7 +31,6 @@
 	font-size: 1.125rem;
 	line-height: 1.6;
 	margin: 0 0 2rem;
-	max-width: 42rem;
 }
 
 .gallery__intro p {
@@ -29,10 +39,6 @@
 
 .gallery__grid--preview {
 	margin-bottom: 2rem;
-}
-
-.gallery__stack {
-	max-width: 56rem;
 }
 
 .gallery .media-grid__default-cell img {

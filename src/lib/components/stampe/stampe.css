@@ -8,12 +8,23 @@
 	border-radius: var(--section-card-radius, 24px);
 	color: var(--stampe-text);
 	overflow: hidden;
-	padding: 3rem 1.5rem;
+}
+
+.home__sections > .stampe {
+	padding: var(--section-block-padding);
+}
+
+.stampe__title,
+.stampe__intro,
+.stampe__grid--preview {
+	max-width: var(--section-content-max-width, 56rem);
+	width: 100%;
 }
 
 .stampe__title {
-	font-size: clamp(2rem, 4vw, 3rem);
+	font-size: var(--section-item-title-size);
 	font-weight: 700;
+	line-height: var(--section-item-title-line-height);
 	margin: 0 0 1rem;
 }
 
@@ -21,7 +32,6 @@
 	font-size: 1.125rem;
 	line-height: 1.6;
 	margin: 0 0 2rem;
-	max-width: 42rem;
 }
 
 .stampe__intro p {

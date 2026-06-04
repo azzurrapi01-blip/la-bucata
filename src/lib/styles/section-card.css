@@ -1,19 +1,101 @@
 :root {
 	--section-card-radius: 24px;
+	--section-content-max-width: 56rem;
+	--section-shell-padding: 2rem 1.5rem 3rem;
+	--section-block-padding: 3rem 1.5rem;
+	--section-title-gap: 1rem;
+	--section-intro-gap: 2rem;
+	--section-preview-intro-gap: 1.5rem;
+	--section-item-title-gap: 1.25rem;
+	--section-item-title-size: clamp(1.25rem, 2.5vw, 1.75rem);
+	--section-item-title-line-height: 1.25;
 }
 
-:global(section.audio),
-:global(section.gallery),
-:global(section.percorso),
-:global(section.stampe),
-:global(section.raccolta) {
+section.audio .audio__title,
+section.audio .audio-recording__title,
+section.percorso .percorso__title,
+section.percorso .percorso-stage__title,
+section.gallery .gallery__title,
+section.stampe .stampe__title,
+section.raccolta .raccolta__title {
+	font-family: inherit;
+	font-size: var(--section-item-title-size);
+	font-weight: 700;
+	line-height: var(--section-item-title-line-height);
+}
+
+section.audio :is(h1, h2).audio__title,
+section.percorso :is(h1, h2).percorso__title,
+section.gallery :is(h1, h2).gallery__title,
+section.stampe :is(h1, h2).stampe__title,
+section.raccolta :is(h1, h2).raccolta__title {
+	margin: 0 0 var(--section-title-gap);
+}
+
+section.audio .audio-recording__title,
+section.percorso .percorso-stage__title {
+	margin: 0 0 var(--section-item-title-gap);
+}
+
+section.audio .audio__intro,
+section.percorso .percorso__intro,
+section.gallery .gallery__intro,
+section.stampe .stampe__intro,
+section.raccolta .raccolta__intro {
+	font-size: 1.125rem;
+	line-height: 1.6;
+	margin: 0 0 var(--section-intro-gap);
+	max-width: var(--section-content-max-width);
+	width: 100%;
+}
+
+section.audio .audio__intro p,
+section.percorso .percorso__intro p,
+section.gallery .gallery__intro p,
+section.stampe .stampe__intro p,
+section.raccolta .raccolta__intro p {
+	margin: 0;
+}
+
+section.audio.audio--preview .audio__title {
+	margin: 0;
+}
+
+section.percorso.percorso--preview .percorso__title {
+	margin: 0 0 var(--section-title-gap);
+}
+
+section.audio.audio--preview .audio__intro,
+section.percorso.percorso--preview .percorso__intro {
+	margin: 0 0 var(--section-preview-intro-gap);
+}
+
+section.audio .audio__title,
+section.audio .audio__intro,
+section.percorso .percorso__title,
+section.percorso .percorso__intro,
+section.gallery .gallery__title,
+section.gallery .gallery__intro,
+section.stampe .stampe__title,
+section.stampe .stampe__intro,
+section.raccolta .raccolta__title,
+section.raccolta .raccolta__intro {
+	max-width: var(--section-content-max-width);
+	width: 100%;
+}
+
+section.audio,
+section.gallery,
+section.percorso,
+section.stampe,
+section.raccolta {
 	border-radius: var(--section-card-radius);
 	overflow: hidden;
 }
 
-:global(.site-shell__main > section),
-:global(.home__sections > section),
-:global(.home__sections > .home-intro) {
+.site-shell .site-shell__main > section,
+.home__sections > section,
+.home__sections > .home-intro {
 	border-radius: var(--section-card-radius);
 	overflow: hidden;
 }

@@ -39,13 +39,13 @@
 	padding: 1rem;
 }
 
-.home__sections > :global(section) {
+.home__sections > section {
 	border-radius: var(--section-card-radius, 2rem);
 	overflow: hidden;
 	scroll-margin-top: 1rem;
 }
 
-:global(html) {
+html {
 	scroll-behavior: smooth;
 }
 
