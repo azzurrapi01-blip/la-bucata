@@ -1,15 +1,14 @@
 <script lang="ts">
-	import StampeCard from './StampeCard.svelte';
 	import SectionHeading from '$lib/components/ui/SectionHeading.svelte';
 	import CategoryFilters from '$lib/components/ui/CategoryFilters.svelte';
 	import MediaGrid from '$lib/components/ui/MediaGrid.svelte';
 	import MediaLightbox from '$lib/components/ui/MediaLightbox.svelte';
-	import { STAMPE_INTRO, STAMPE_TITLE } from '$lib/stampe/constants';
-	import type { StampeManifest } from '$lib/stampe/types';
-	import './stampe.css';
+	import { GALLERY_INTRO, GALLERY_TITLE } from '$lib/gallery/constants';
+	import type { GalleryManifest } from '$lib/gallery/types';
+	import './gallery.css';
 
 	type Props = {
-		manifest: StampeManifest;
+		manifest: GalleryManifest;
 	};
 
 	let { manifest }: Props = $props();
@@ -20,7 +19,8 @@
 	let lightboxIndex = $state(0);
 
 	const activeCategory = $derived(
-		manifest.categories.find((category) => category.id === activeCategoryId) ?? manifest.categories[0]
+		manifest.categories.find((category) => category.id === activeCategoryId) ??
+			manifest.categories[0]
 	);
 	const visibleImages = $derived(activeCategory?.images ?? []);
 
@@ -28,7 +28,6 @@
 		if (id === activeCategoryId) return;
 
 		lightboxOpen = false;
-
 		fading = true;
 		setTimeout(() => {
 			activeCategoryId = id;
@@ -42,35 +41,38 @@
 	}
 </script>
 
-<section class="stampe">
+<section class="gallery">
 	<SectionHeading
-		title={STAMPE_TITLE}
-		intro={STAMPE_INTRO}
+		title={GALLERY_TITLE}
+		intro={GALLERY_INTRO}
 		headingLevel={1}
-		titleClass="stampe__title"
-		introClass="stampe__intro"
+		titleClass="gallery__title"
+		introClass="gallery__intro"
 	/>
 
 	<CategoryFilters
 		categories={manifest.categories}
 		activeId={activeCategoryId}
 		onSelect={selectCategory}
-		ariaLabel="Filtra stampe"
+		ariaLabel="Filtra gallery"
 	/>
 
-	<MediaGrid images={visibleImages} layout="grid-3" {fading} onImageClick={openLightbox}>
-		{#snippet cell({ src, index })}
-			<StampeCard {src} onClick={() => openLightbox(index)} />
-		{/snippet}
-	</MediaGrid>
+	<MediaGrid
+		images={visibleImages}
+		layout="stack"
+		class="gallery__stack"
+		{fading}
+		imageAlt="Fotografia del percorso"
+		onImageClick={openLightbox}
+	/>
 
 	<MediaLightbox
 		open={lightboxOpen}
 		images={visibleImages}
 		index={lightboxIndex}
 		navigable={true}
-		imageAlt="Stampa botanica ingrandita"
-		dialogLabel="Anteprima stampa"
+		imageAlt="Fotografia del percorso ingrandita"
+		dialogLabel="Anteprima fotografia"
 		onClose={() => (lightboxOpen = false)}
 		onIndexChange={(nextIndex) => (lightboxIndex = nextIndex)}
 	/>

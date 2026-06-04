@@ -1,0 +1,110 @@
+.percorso {
+	--section-bg: #adb4a8;
+	--section-text: #000000;
+	--cta-bg: #000000;
+	--cta-text: #ffffff;
+
+	background: var(--section-bg);
+	color: var(--section-text);
+	padding: 3rem 1.5rem;
+}
+
+.percorso__title {
+	font-size: clamp(2rem, 4vw, 3rem);
+	font-weight: 700;
+	margin: 0 0 1rem;
+}
+
+.percorso__intro {
+	font-size: 1.125rem;
+	line-height: 1.6;
+	margin: 0 0 2rem;
+	max-width: 42rem;
+}
+
+.percorso__intro p {
+	margin: 0;
+}
+
+.percorso-stage--preview {
+	margin-bottom: 1.5rem;
+}
+
+.percorso-stage--preview .percorso-stage__title {
+	font-size: clamp(1.35rem, 2.7vw, 1.9rem);
+}
+
+.percorso__cta {
+	background: var(--cta-bg);
+	color: var(--cta-text);
+	display: inline-block;
+	font: inherit;
+	margin-top: 1.5rem;
+	padding: 0.75rem 1.25rem;
+	text-decoration: none;
+}
+
+.percorso__list {
+	margin: 0 auto;
+	max-width: 56rem;
+}
+
+.percorso__divider {
+	border: 0;
+	border-top: 1px solid var(--section-text);
+	margin: 2.5rem 0;
+}
+
+.percorso-stage__title {
+	font-size: clamp(1.5rem, 3vw, 2.25rem);
+	font-weight: 700;
+	margin: 0 0 1.25rem;
+}
+
+.percorso-stage__grid {
+	display: grid;
+	gap: 1.5rem 2rem;
+	grid-template-columns: minmax(10rem, 14rem) minmax(0, 1fr);
+	margin-bottom: 1.25rem;
+}
+
+.percorso-stage__meta {
+	font-size: 1rem;
+	font-weight: 700;
+	line-height: 1.4;
+	margin: 0;
+}
+
+.percorso-stage__body {
+	font-size: 1rem;
+	line-height: 1.6;
+	margin: 0;
+}
+
+.percorso-stage__map-wrap {
+	margin: 0;
+}
+
+.percorso-stage__map {
+	border: 0;
+	display: block;
+	height: 320px;
+	width: 100%;
+}
+
+.percorso-stage__map-link {
+	color: var(--section-text);
+	display: inline-block;
+	font-weight: 700;
+	margin-top: 0.75rem;
+}
+
+@media (max-width: 640px) {
+	.percorso-stage__grid {
+		grid-template-columns: 1fr;
+	}
+
+	.percorso-stage__map {
+		height: 260px;
+	}
+}

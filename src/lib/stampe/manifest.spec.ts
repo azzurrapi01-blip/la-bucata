@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { buildStampeManifest } from './manifest';
 
 describe('buildStampeManifest', () => {
-	it('includes Tutte as first category with images from static/stampe/tutte/', () => {
+	it('includes Tutte as first category with images from $lib/content/stampe/tutte/', () => {
 		const manifest = buildStampeManifest();
 
 		expect(manifest.categories[0].id).toBe('tutte');
@@ -23,7 +23,8 @@ describe('buildStampeManifest', () => {
 		const foglie = manifest.categories.find((c) => c.id === 'foglie');
 
 		expect(foglie).toBeDefined();
-		expect(foglie!.images.every((src) => src.startsWith('/stampe/foglie/'))).toBe(true);
+		expect(foglie!.images.length).toBeGreaterThan(0);
+		expect(foglie!.images.every((src) => src.length > 0)).toBe(true);
 	});
 });
 
