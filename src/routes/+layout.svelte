@@ -1,7 +1,15 @@
 <script lang="ts">
+	import { page } from '$app/state';
+	import SiteShell from '$lib/components/layout/SiteShell.svelte';
 	import favicon from '$lib/assets/favicon.svg';
+	import '$lib/styles/gt-alpha.css';
+	import '$lib/styles/gt-walsheim.css';
+	import '$lib/styles/section-card.css';
 
 	let { children } = $props();
+
+	const routeId = $derived(page.route.id ?? '');
+	const useSiteShell = $derived(routeId !== '/' && !routeId.startsWith('/demo'));
 </script>
 
 <svelte:head>
@@ -14,7 +22,13 @@
 	/>
 </svelte:head>
 
-{@render children()}
+{#if useSiteShell}
+	<SiteShell>
+		{@render children()}
+	</SiteShell>
+{:else}
+	{@render children()}
+{/if}
 
 <style>
 	:global(body) {

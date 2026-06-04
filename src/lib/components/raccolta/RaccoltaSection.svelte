@@ -34,7 +34,7 @@
 	}
 </script>
 
-<section class="raccolta">
+<section class="raccolta" id="raccolta">
 	<SectionHeading
 		title={RACCOLTA_TITLE}
 		intro={RACCOLTA_INTRO}

@@ -31,7 +31,7 @@
 	}
 </script>
 
-<section class="stampe">
+<section class="stampe" id="stampe">
 	<SectionHeading
 		title={STAMPE_TITLE}
 		intro={STAMPE_INTRO}

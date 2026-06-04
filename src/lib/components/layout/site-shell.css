@@ -1,0 +1,17 @@
+.site-shell {
+	background: #ffffff;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.site-shell__main {
+	flex: 1 1 auto;
+	padding: 1rem;
+}
+
+.site-shell__main > :global(section) {
+	border-radius: var(--section-card-radius, 2rem);
+	overflow: hidden;
+	scroll-margin-top: 1rem;
+}

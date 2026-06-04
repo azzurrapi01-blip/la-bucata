@@ -1,0 +1,89 @@
+.home-hero {
+	--home-hero-aspect: 1024 / 871;
+	--home-hero-font: 'GT Alpina', Georgia, 'Times New Roman', serif;
+
+	border-radius: 0;
+	flex: 1 1 auto;
+	font-family: var(--home-hero-font);
+	min-height: 0;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+}
+
+.home-hero__media {
+	inset: 0;
+	overflow: hidden;
+	position: absolute;
+	width: 100%;
+}
+
+.home-hero__media::before {
+	background: linear-gradient(
+		to bottom,
+		#ffffff 0%,
+		rgb(255 255 255 / 92%) 18%,
+		rgb(255 255 255 / 45%) 42%,
+		transparent 100%
+	);
+	content: '';
+	height: 28%;
+	left: 0;
+	max-height: 12rem;
+	min-height: 4rem;
+	pointer-events: none;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 1;
+}
+
+.home-hero__image {
+	display: block;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	width: 100%;
+}
+
+.home-hero__overlay {
+	bottom: 0;
+	color: #ffffff;
+	display: flex;
+	flex-direction: column;
+	gap: 0.2rem;
+	left: 0;
+	padding: clamp(1.25rem, 4vw, 3rem);
+	position: absolute;
+	right: 0;
+	text-shadow: 0 1px 12px rgb(0 0 0 / 35%);
+	z-index: 1;
+}
+
+.home-hero__title {
+	font-family: 'GT Walsheim Pro', system-ui, sans-serif;
+	font-size: clamp(2.5rem, 7vw, 5.5rem);
+	font-weight: 700;
+	letter-spacing: 0.02em;
+	line-height: 0.95;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+.home-hero__subtitle {
+	font-family: var(--home-hero-font);
+	font-size: clamp(1rem, 2.2vw, 1.75rem);
+	font-weight: 300;
+	letter-spacing: 0.04em;
+	line-height: 1.25;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+@media (max-width: 720px) {
+	.home-hero {
+		aspect-ratio: var(--home-hero-aspect);
+		flex: none;
+		width: 100%;
+	}
+}

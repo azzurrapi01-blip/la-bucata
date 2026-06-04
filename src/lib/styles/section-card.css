@@ -1,0 +1,18 @@
+:root {
+	--section-card-radius: 2rem;
+}
+
+:global(section.audio),
+:global(section.gallery),
+:global(section.percorso),
+:global(section.stampe),
+:global(section.raccolta) {
+	border-radius: var(--section-card-radius);
+	overflow: hidden;
+}
+
+:global(.site-shell__main > section),
+:global(.home__sections > section) {
+	border-radius: var(--section-card-radius);
+	overflow: hidden;
+}

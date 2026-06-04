@@ -30,7 +30,7 @@
 	}
 </script>
 
-<section class="gallery">
+<section class="gallery" id="gallery">
 	<SectionHeading
 		title={GALLERY_TITLE}
 		intro={GALLERY_INTRO}

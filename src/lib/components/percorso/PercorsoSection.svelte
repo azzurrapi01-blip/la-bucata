@@ -22,7 +22,7 @@
 	});
 </script>
 
-<section class="percorso percorso--preview">
+<section class="percorso percorso--preview" id="percorso">
 	<SectionHeading
 		title={PERCORSO_TITLE}
 		intro={PERCORSO_INTRO}

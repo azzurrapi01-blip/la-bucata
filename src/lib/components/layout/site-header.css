@@ -1,0 +1,83 @@
+.site-header {
+	background: #ffffff;
+	flex-shrink: 0;
+	width: 100%;
+}
+
+.site-header__inner {
+	align-items: center;
+	display: flex;
+	gap: 1.5rem;
+	justify-content: space-between;
+	padding: 1rem clamp(1rem, 3vw, 2.5rem);
+}
+
+.site-header__brand-home {
+	align-items: center;
+	color: #000000;
+	display: flex;
+	flex-shrink: 0;
+	gap: 0.75rem;
+	text-decoration: none;
+}
+
+.site-header__brand-home:focus-visible {
+	outline: 2px solid #000000;
+	outline-offset: 2px;
+}
+
+.site-header__brand-logo {
+	display: block;
+	height: 2.75rem;
+	object-fit: contain;
+	width: auto;
+}
+
+.site-header__brand-title {
+	font-family: 'GT Walsheim Pro', system-ui, sans-serif;
+	font-size: clamp(1.125rem, 2vw, 1.5rem);
+	font-weight: 700;
+	letter-spacing: 0.02em;
+	line-height: 1;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+.site-header__nav {
+	display: flex;
+	flex: 1 1 auto;
+	flex-wrap: wrap;
+	gap: 0.35rem 1.25rem;
+	justify-content: flex-end;
+}
+
+.site-header__nav-link {
+	color: #000000;
+	font-family: 'GT Alpina', Georgia, 'Times New Roman', serif;
+	font-size: clamp(0.75rem, 1.1vw, 0.9375rem);
+	font-weight: 700;
+	line-height: 1.3;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.site-header__nav-link:hover {
+	text-decoration: underline;
+}
+
+.site-header__nav-link:focus-visible {
+	outline: 2px solid #000000;
+	outline-offset: 2px;
+}
+
+@media (max-width: 720px) {
+	.site-header__inner {
+		align-items: flex-start;
+		flex-direction: column;
+	}
+
+	.site-header__nav {
+		justify-content: flex-start;
+		width: 100%;
+	}
+}

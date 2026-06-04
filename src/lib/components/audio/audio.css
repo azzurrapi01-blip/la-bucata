@@ -14,11 +14,9 @@
 }
 
 .audio--preview .audio__title {
-	flex: 1 1 auto;
 	font-size: clamp(2rem, 4vw, 3rem);
 	font-weight: 700;
 	margin: 0;
-	min-width: 0;
 }
 
 .audio--preview .audio__intro {
@@ -109,7 +107,20 @@
 	margin: 0;
 }
 
-.audio-recording__play {
+.audio-playback {
+	align-items: center;
+	display: flex;
+	gap: 1rem;
+	margin: 0 0 1.25rem;
+	max-width: 56rem;
+}
+
+.audio--preview .audio-playback {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.audio-playback__play {
 	align-items: center;
 	background: var(--play-button-bg);
 	border: 1px solid var(--section-text);
@@ -117,26 +128,75 @@
 	color: var(--section-text);
 	cursor: pointer;
 	display: inline-flex;
+	flex-shrink: 0;
 	height: 2.75rem;
 	justify-content: center;
-	margin: 0 0 1.25rem;
 	padding: 0;
 	width: 2.75rem;
 }
 
-.audio-recording__play:hover {
+.audio-playback__play:hover {
 	opacity: 0.9;
 }
 
-.audio-recording__play:focus-visible {
+.audio-playback__play:focus-visible {
 	outline: 2px solid var(--section-text);
 	outline-offset: 3px;
 }
 
-.audio-recording__play-icon {
+.audio-playback__play-icon {
 	display: block;
 	height: 0.9rem;
 	width: 0.9rem;
+}
+
+.audio-playback__progress {
+	--progress-track: rgb(0 0 0 / 18%);
+	--progress-fill: var(--section-text);
+
+	appearance: none;
+	background: transparent;
+	cursor: pointer;
+	flex: 1 1 auto;
+	height: 1.25rem;
+	margin: 0;
+	min-width: 0;
+	width: 100%;
+}
+
+.audio-playback__progress:disabled {
+	cursor: not-allowed;
+	opacity: 0.45;
+}
+
+.audio-playback__progress::-webkit-slider-runnable-track {
+	background: var(--progress-track);
+	border-radius: 999px;
+	height: 0.35rem;
+}
+
+.audio-playback__progress::-webkit-slider-thumb {
+	appearance: none;
+	background: var(--progress-fill);
+	border: none;
+	border-radius: 50%;
+	height: 0.85rem;
+	margin-top: -0.25rem;
+	width: 0.85rem;
+}
+
+.audio-playback__progress::-moz-range-track {
+	background: var(--progress-track);
+	border-radius: 999px;
+	height: 0.35rem;
+}
+
+.audio-playback__progress::-moz-range-thumb {
+	background: var(--progress-fill);
+	border: none;
+	border-radius: 50%;
+	height: 0.85rem;
+	width: 0.85rem;
 }
 
 .audio-recording__spectrogram {
