@@ -1,3 +1,5 @@
+import type { EnhancedImageSrc } from '$lib/images/types';
+
 export type AudioRecording = {
 	id: string;
 	number: number;
@@ -9,7 +11,7 @@ export type AudioRecording = {
 	percentuale: number;
 	body: string;
 	audioSrc: string;
-	spectrogramSrc: string;
+	spectrogramSrc: EnhancedImageSrc;
 };
 
 export type AudioManifest = {

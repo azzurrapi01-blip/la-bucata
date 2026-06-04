@@ -1,19 +1,23 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import OptimizedImage from './OptimizedImage.svelte';
+	import type { EnhancedImageSrc } from '$lib/images/types';
+	import { SIZES_COLUMN, SIZES_GRID_HALF, SIZES_GRID_THIRD } from '$lib/images/sizes';
 
 	export type MediaGridLayout = 'stack' | 'grid-3' | 'grid-2' | 'grid-2x2';
 
 	type CellContext = {
-		src: string;
+		src: EnhancedImageSrc;
 		index: number;
 	};
 
 	type Props = {
-		images: string[];
+		images: EnhancedImageSrc[];
 		layout: MediaGridLayout;
 		class?: string;
 		fading?: boolean;
 		imageAlt?: string;
+		imageSizes?: string;
 		onImageClick?: (index: number) => void;
 		cell?: Snippet<[CellContext]>;
 	};
@@ -24,9 +28,19 @@
 		class: className = '',
 		fading = false,
 		imageAlt = 'Immagine',
+		imageSizes,
 		onImageClick,
 		cell
 	}: Props = $props();
+
+	const resolvedSizes = $derived(
+		imageSizes ??
+			(layout === 'grid-3'
+				? SIZES_GRID_THIRD
+				: layout === 'stack'
+					? SIZES_COLUMN
+					: SIZES_GRID_HALF)
+	);
 
 	const layoutClass = $derived(
 		({
@@ -51,7 +65,7 @@
 				class="media-grid__default-cell"
 				onclick={() => onImageClick?.(index)}
 			>
-				<img {src} alt={imageAlt} loading="lazy" />
+				<OptimizedImage {src} alt={imageAlt} sizes={resolvedSizes} loading="lazy" />
 			</button>
 		{/if}
 	{/each}
@@ -95,7 +109,7 @@
 		width: 100%;
 	}
 
-	.media-grid__default-cell img {
+	.media-grid__default-cell :global(img) {
 		display: block;
 		height: auto;
 		width: 100%;

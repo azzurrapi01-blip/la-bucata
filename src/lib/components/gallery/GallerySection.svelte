@@ -4,17 +4,18 @@
 	import MediaGrid from '$lib/components/ui/MediaGrid.svelte';
 	import MediaLightbox from '$lib/components/ui/MediaLightbox.svelte';
 	import { GALLERY_CTA, GALLERY_INTRO, GALLERY_TITLE } from '$lib/gallery/constants';
+	import type { EnhancedImageSrc } from '$lib/images/types';
 	import { pickRandom } from '$lib/stampe/random';
 	import { base } from '$app/paths';
 	import './gallery.css';
 
 	type Props = {
-		allImages: string[];
+		allImages: EnhancedImageSrc[];
 	};
 
 	let { allImages }: Props = $props();
 
-	let previewImages = $state<string[]>([]);
+	let previewImages = $state<EnhancedImageSrc[]>([]);
 	let lightboxOpen = $state(false);
 	let lightboxIndex = $state(0);
 

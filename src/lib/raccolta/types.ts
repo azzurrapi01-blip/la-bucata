@@ -1,5 +1,7 @@
+import type { EnhancedImageSrc } from '$lib/images/types';
+
 export type RaccoltaImage = {
-	src: string;
+	src: EnhancedImageSrc;
 	caption: string;
 };
 

@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { expectEnhancedSrc } from '$lib/images/test-helpers';
 import { buildStampeManifest } from './manifest';
 
 describe('buildStampeManifest', () => {
@@ -24,7 +25,9 @@ describe('buildStampeManifest', () => {
 
 		expect(foglie).toBeDefined();
 		expect(foglie!.images.length).toBeGreaterThan(0);
-		expect(foglie!.images.every((src) => src.length > 0)).toBe(true);
+		for (const src of foglie!.images) {
+			expectEnhancedSrc(src);
+		}
 	});
 });
 

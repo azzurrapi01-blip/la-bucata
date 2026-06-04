@@ -1,11 +1,12 @@
+import type { EnhancedImageSrc } from '$lib/images/types';
 import { CATEGORY_LABELS, CATEGORY_ORDER } from './constants';
 import type { StampeCategory, StampeManifest } from './types';
 
 const imageModules = import.meta.glob('/src/lib/content/stampe/**/*.{jpg,jpeg,png,webp}', {
 	eager: true,
-	query: '?url',
+	query: { enhanced: true },
 	import: 'default'
-}) as Record<string, string>;
+}) as Record<string, EnhancedImageSrc>;
 
 const IMAGE_EXT = /\.(jpe?g|png|webp)$/i;
 const CATEGORY_SEGMENT = /\/stampe\/([^/]+)\//;
@@ -14,11 +15,11 @@ function categoryIdFromPath(path: string): string | null {
 	return path.match(CATEGORY_SEGMENT)?.[1] ?? null;
 }
 
-function listImages(categoryId: string): string[] {
+function listImages(categoryId: string): EnhancedImageSrc[] {
 	return Object.entries(imageModules)
 		.filter(([path]) => IMAGE_EXT.test(path) && categoryIdFromPath(path) === categoryId)
 		.sort(([a], [b]) => a.localeCompare(b))
-		.map(([, url]) => url);
+		.map(([, src]) => src);
 }
 
 export function buildStampeManifest(): StampeManifest {

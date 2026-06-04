@@ -1,15 +1,16 @@
+import type { EnhancedImageSrc } from '$lib/images/types';
 import { captionFromFilename } from './caption';
 import { MONTH_LABELS, MONTH_ORDER } from './constants';
 import type { RaccoltaCategory, RaccoltaImage, RaccoltaManifest, RaccoltaMonth } from './types';
 
 const imageModules = import.meta.glob(
-	'/src/lib/content/raccolta/**/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}',
+	'/src/lib/content/raccolta/**/*.{jpg,jpeg,png,webp}',
 	{
 		eager: true,
-		query: '?url',
+		query: { enhanced: true },
 		import: 'default'
 	}
-) as Record<string, string>;
+) as Record<string, EnhancedImageSrc>;
 
 const IMAGE_EXT = /\.(jpe?g|png|webp)$/i;
 const MONTH_SEGMENT = /\/raccolta\/([^/]+)\//;

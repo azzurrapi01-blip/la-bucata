@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { expectEnhancedSrc } from '$lib/images/test-helpers';
 import { buildAudioManifest } from './manifest';
 
 describe('buildAudioManifest', () => {
@@ -21,7 +22,7 @@ describe('buildAudioManifest', () => {
 
 		for (const recording of recordings) {
 			expect(recording.audioSrc).toMatch(/\.mp3$/i);
-			expect(recording.spectrogramSrc).toMatch(/\.png$/i);
+			expectEnhancedSrc(recording.spectrogramSrc);
 			expect(recording.body.length).toBeGreaterThan(0);
 			expect(recording.luogo.length).toBeGreaterThan(0);
 		}

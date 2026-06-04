@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { expectEnhancedSrc } from '$lib/images/test-helpers';
 import { buildGalleryManifest } from './manifest';
 
 describe('buildGalleryManifest', () => {
@@ -8,6 +9,7 @@ describe('buildGalleryManifest', () => {
 		expect(manifest.categories[0].id).toBe('tutte');
 		expect(manifest.categories[0].label).toBe('Tutte');
 		expect(manifest.categories[0].images.length).toBeGreaterThan(0);
+		expectEnhancedSrc(manifest.categories[0].images[0]);
 		expect(manifest.allImages).toEqual(manifest.categories[0].images);
 	});
 

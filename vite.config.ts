@@ -1,9 +1,10 @@
+import { enhancedImages } from '@sveltejs/enhanced-img';
 import { defineConfig } from 'vitest/config';
 import { playwright } from '@vitest/browser-playwright';
 import { sveltekit } from '@sveltejs/kit/vite';
 
 export default defineConfig({
-	plugins: [sveltekit()],
+	plugins: [enhancedImages(), sveltekit()],
 	test: {
 		expect: { requireAssertions: true },
 		projects: [

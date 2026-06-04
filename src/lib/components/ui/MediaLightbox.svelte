@@ -1,9 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import OptimizedImage from './OptimizedImage.svelte';
+	import type { EnhancedImageSrc } from '$lib/images/types';
+	import { SIZES_LIGHTBOX } from '$lib/images/sizes';
 
 	type Props = {
 		open: boolean;
-		images: string[];
+		images: EnhancedImageSrc[];
 		index: number;
 		navigable?: boolean;
 		imageAlt?: string;
@@ -25,7 +28,7 @@
 
 	const canGoPrev = $derived(navigable && images.length > 1 && index > 0);
 	const canGoNext = $derived(navigable && images.length > 1 && index < images.length - 1);
-	const currentSrc = $derived(images[index] ?? '');
+	const currentSrc = $derived(images[index]);
 
 	function goPrev() {
 		if (!canGoPrev) return;
@@ -102,7 +105,17 @@
 			</button>
 		{/if}
 
-		<img class="media-lightbox__image" src={currentSrc} alt={imageAlt} />
+		{#if currentSrc}
+			<div class="media-lightbox__image-wrap">
+				<OptimizedImage
+					src={currentSrc}
+					alt={imageAlt}
+					sizes={SIZES_LIGHTBOX}
+					loading="eager"
+					class="media-lightbox__image"
+				/>
+			</div>
+		{/if}
 
 		{#if canGoNext}
 			<button
@@ -128,7 +141,8 @@
 		z-index: 1000;
 	}
 
-	.media-lightbox__image {
+	.media-lightbox__image-wrap :global(img) {
+		display: block;
 		max-height: 90vh;
 		max-width: min(90vw, 56rem);
 		object-fit: contain;

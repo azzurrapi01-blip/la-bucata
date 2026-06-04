@@ -4,18 +4,19 @@
 	import SectionHeading from '$lib/components/ui/SectionHeading.svelte';
 	import MediaGrid from '$lib/components/ui/MediaGrid.svelte';
 	import MediaLightbox from '$lib/components/ui/MediaLightbox.svelte';
+	import type { EnhancedImageSrc } from '$lib/images/types';
 	import { STAMPE_CTA, STAMPE_INTRO, STAMPE_TITLE } from '$lib/stampe/constants';
 	import { pickRandom } from '$lib/stampe/random';
 	import { base } from '$app/paths';
 	import './stampe.css';
 
 	type Props = {
-		allImages: string[];
+		allImages: EnhancedImageSrc[];
 	};
 
 	let { allImages }: Props = $props();
 
-	let previewImages = $state<string[]>([]);
+	let previewImages = $state<EnhancedImageSrc[]>([]);
 	let lightboxOpen = $state(false);
 	let lightboxIndex = $state(0);
 

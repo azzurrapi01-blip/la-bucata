@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import OptimizedImage from '$lib/components/ui/OptimizedImage.svelte';
 	import { AUDIO_INTRO, AUDIO_PREVIEW_LINK, AUDIO_TITLE } from '$lib/audio/constants';
 	import type { AudioRecording } from '$lib/audio/types';
+	import { SIZES_SPECTROGRAM } from '$lib/images/sizes';
 	import { pickRandom } from '$lib/stampe/random';
 	import { base } from '$app/paths';
 	import './audio.css';
@@ -92,10 +94,13 @@
 		></audio>
 
 		<div class="audio__spectrogram-wrap">
-			<img
+			<OptimizedImage
 				class="audio-recording__spectrogram"
 				src={preview.spectrogramSrc}
 				alt="Spettrogramma della registrazione a {preview.luogo}"
+				sizes={SIZES_SPECTROGRAM}
+				loading="eager"
+				fetchpriority="high"
 			/>
 		</div>
 	{/if}

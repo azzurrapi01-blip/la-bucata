@@ -1,5 +1,7 @@
 <script lang="ts">
+	import OptimizedImage from '$lib/components/ui/OptimizedImage.svelte';
 	import type { AudioRecording } from '$lib/audio/types';
+	import { SIZES_SPECTROGRAM } from '$lib/images/sizes';
 
 	type Props = {
 		recording: AudioRecording;
@@ -88,10 +90,11 @@
 		onpause={handlePause}
 	></audio>
 
-	<img
+	<OptimizedImage
 		class="audio-recording__spectrogram"
 		src={recording.spectrogramSrc}
 		alt="Spettrogramma della registrazione a {recording.luogo}"
+		sizes={SIZES_SPECTROGRAM}
 		loading="lazy"
 	/>
 </article>

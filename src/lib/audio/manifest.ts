@@ -1,3 +1,4 @@
+import type { EnhancedImageSrc } from '$lib/images/types';
 import { formatCoordinateLabel, parseInfoMarkdown } from './parse-info';
 import type { AudioManifest, AudioRecording } from './types';
 
@@ -15,9 +16,9 @@ const audioModules = import.meta.glob('/src/lib/content/audio/**/*.{mp3,MP3}', {
 
 const imageModules = import.meta.glob('/src/lib/content/audio/**/*.{png,PNG}', {
 	eager: true,
-	query: '?url',
+	query: { enhanced: true },
 	import: 'default'
-}) as Record<string, string>;
+}) as Record<string, EnhancedImageSrc>;
 
 const TAPPA_SEGMENT = /\/audio\/(tappa-\d+)\//;
 const AUDIO_EXT = /\.mp3$/i;
@@ -31,11 +32,19 @@ function tappaNumberFromId(id: string): number {
 	return Number.parseInt(id.replace('tappa-', ''), 10);
 }
 
-function assetForTappa(
-	modules: Record<string, string>,
+function assetUrlForTappa(modules: Record<string, string>, tappaId: string, ext: RegExp): string | null {
+	const entry = Object.entries(modules).find(
+		([path]) => ext.test(path) && tappaIdFromPath(path) === tappaId
+	);
+
+	return entry?.[1] ?? null;
+}
+
+function assetImageForTappa(
+	modules: Record<string, EnhancedImageSrc>,
 	tappaId: string,
 	ext: RegExp
-): string | null {
+): EnhancedImageSrc | null {
 	const entry = Object.entries(modules).find(
 		([path]) => ext.test(path) && tappaIdFromPath(path) === tappaId
 	);
@@ -44,8 +53,8 @@ function assetForTappa(
 }
 
 function buildRecording(tappaId: string, rawInfo: string): AudioRecording | null {
-	const audioSrc = assetForTappa(audioModules, tappaId, AUDIO_EXT);
-	const spectrogramSrc = assetForTappa(imageModules, tappaId, IMAGE_EXT);
+	const audioSrc = assetUrlForTappa(audioModules, tappaId, AUDIO_EXT);
+	const spectrogramSrc = assetImageForTappa(imageModules, tappaId, IMAGE_EXT);
 	if (!audioSrc || !spectrogramSrc) return null;
 
 	const { frontmatter, body } = parseInfoMarkdown(rawInfo);

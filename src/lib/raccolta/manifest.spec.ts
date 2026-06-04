@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { expectEnhancedSrc } from '$lib/images/test-helpers';
 import { buildRaccoltaManifest } from './manifest';
 
 describe('buildRaccoltaManifest', () => {
@@ -15,6 +16,7 @@ describe('buildRaccoltaManifest', () => {
 		expect(manifest.months[0].id).toBe('febbraio');
 		expect(manifest.months[0].images.length).toBeGreaterThan(0);
 		expect(manifest.months[0].images[0].caption.length).toBeGreaterThan(0);
+		expectEnhancedSrc(manifest.months[0].images[0].src);
 	});
 
 	it('flattens all items for homepage sampling', () => {
