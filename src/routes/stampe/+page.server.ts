@@ -1,8 +1,8 @@
 import { buildStampeManifest } from '$lib/stampe/manifest';
-import type { PageLoad } from './$types';
+import type { PageServerLoad } from './$types';
 
-export const load = (() => {
+export const load: PageServerLoad = () => {
 	return {
 		manifest: buildStampeManifest()
 	};
-}) satisfies PageLoad;
+};

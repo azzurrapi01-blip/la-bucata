@@ -1,8 +1,8 @@
 import { buildAudioManifest } from '$lib/audio/manifest';
-import type { PageLoad } from './$types';
+import type { PageServerLoad } from './$types';
 
-export const load = (() => {
+export const load: PageServerLoad = () => {
 	return {
 		manifest: buildAudioManifest()
 	};
-}) satisfies PageLoad;
+};

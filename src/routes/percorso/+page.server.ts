@@ -1,8 +1,8 @@
 import { buildPercorsoManifest } from '$lib/percorso/manifest';
-import type { PageLoad } from './$types';
+import type { PageServerLoad } from './$types';
 
-export const load = (() => {
+export const load: PageServerLoad = () => {
 	return {
 		manifest: buildPercorsoManifest()
 	};
-}) satisfies PageLoad;
+};

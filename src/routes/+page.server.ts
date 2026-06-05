@@ -4,9 +4,9 @@ import { buildGalleryManifest } from '$lib/gallery/manifest';
 import { buildPercorsoManifest } from '$lib/percorso/manifest';
 import { buildRaccoltaManifest } from '$lib/raccolta/manifest';
 import { buildStampeManifest } from '$lib/stampe/manifest';
-import type { PageLoad } from './$types';
+import type { PageServerLoad } from './$types';
 
-export const load = (() => {
+export const load: PageServerLoad = () => {
 	const about = loadAboutContent();
 	const { recordings: audioRecordings } = buildAudioManifest();
 	const { allImages: galleryAllImages } = buildGalleryManifest();
@@ -22,4 +22,4 @@ export const load = (() => {
 		stampeAllImages,
 		raccoltaAllItems
 	};
-}) satisfies PageLoad;
+};
