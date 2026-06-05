@@ -154,6 +154,23 @@
 	.home-intro__content {
 		min-height: var(--home-block-height, clamp(24rem, 55vh, 32rem));
 	}
+
+	.home-intro__nav {
+		align-items: stretch;
+		gap: 1rem 0.75rem;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.home-intro__card {
+		align-items: stretch;
+		height: 100%;
+	}
+
+	.home-intro__card-panel {
+		aspect-ratio: auto;
+		flex: 1 1 auto;
+		min-height: 5rem;
+	}
 }
 
 @media (max-width: 720px) {
@@ -178,6 +195,29 @@
 	}
 
 	.home-intro__nav {
+		gap: 1.25rem 0.875rem;
 		padding-top: 2rem;
+	}
+
+	.home-intro__card {
+		align-items: stretch;
+		gap: 0.625rem;
+		height: 100%;
+	}
+
+	.home-intro__card-panel {
+		aspect-ratio: auto;
+		flex: 1 1 auto;
+		min-height: 5.5rem;
+		padding: 0.75rem 0.625rem;
+	}
+
+	.home-intro__card-title {
+		font-size: 1rem;
+	}
+
+	.home-intro__card-description {
+		font-size: 0.6875rem;
+		line-height: 1.45;
 	}
 }
