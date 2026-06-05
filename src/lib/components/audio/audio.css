@@ -28,8 +28,8 @@
 .audio--preview .audio__title,
 .audio--preview .audio__intro,
 .audio--preview .audio-recording--preview,
-.audio--preview .audio-playback,
-.audio--preview .audio__spectrogram-wrap {
+.audio--preview .spectrogram-player,
+.audio--preview .audio-playback {
 	max-width: var(--section-content-max-width, 56rem);
 	width: 100%;
 }
@@ -46,11 +46,6 @@
 	font-size: 1.125rem;
 	line-height: 1.6;
 	margin: 0 0 var(--section-preview-intro-gap);
-}
-
-.audio--preview .audio__spectrogram-wrap {
-	margin: 0;
-	overflow: hidden;
 }
 
 .audio--preview .audio__cta {
@@ -139,7 +134,6 @@
 .audio-playback {
 	align-items: center;
 	display: flex;
-	gap: 1rem;
 	margin: 0 0 var(--section-item-title-gap);
 	max-width: var(--section-content-max-width, 56rem);
 	width: 100%;
@@ -175,59 +169,85 @@
 	width: 0.9rem;
 }
 
-.audio-playback__progress {
-	--progress-track: rgb(0 0 0 / 18%);
-	--progress-fill: var(--section-text);
-
-	appearance: none;
-	background: transparent;
-	cursor: pointer;
-	flex: 1 1 auto;
-	height: 1.25rem;
-	margin: 0;
-	min-width: 0;
+.spectrogram-player {
+	max-width: var(--section-content-max-width, 56rem);
 	width: 100%;
 }
 
-.audio-playback__progress:disabled {
-	cursor: not-allowed;
-	opacity: 0.45;
+.spectrogram-player__stage {
+	position: relative;
 }
 
-.audio-playback__progress::-webkit-slider-runnable-track {
-	background: var(--progress-track);
-	border-radius: 999px;
-	height: 0.35rem;
-}
-
-.audio-playback__progress::-webkit-slider-thumb {
-	appearance: none;
-	background: var(--progress-fill);
-	border: none;
-	border-radius: 50%;
-	height: 0.85rem;
-	margin-top: -0.25rem;
-	width: 0.85rem;
-}
-
-.audio-playback__progress::-moz-range-track {
-	background: var(--progress-track);
-	border-radius: 999px;
-	height: 0.35rem;
-}
-
-.audio-playback__progress::-moz-range-thumb {
-	background: var(--progress-fill);
-	border: none;
-	border-radius: 50%;
-	height: 0.85rem;
-	width: 0.85rem;
-}
-
-.audio-recording__spectrogram {
+.spectrogram-player__image {
 	display: block;
 	height: auto;
 	width: 100%;
+}
+
+.spectrogram-player__image--sizer {
+	visibility: hidden;
+}
+
+.spectrogram-player__image--gray,
+.spectrogram-player__color {
+	inset: 0;
+	position: absolute;
+}
+
+.spectrogram-player__image--gray {
+	filter: grayscale(100%);
+}
+
+.spectrogram-player__image--gray-hidden {
+	opacity: 0;
+}
+
+.spectrogram-player__color {
+	overflow: hidden;
+}
+
+.spectrogram-player__seek-band {
+	background: transparent;
+	border: 0;
+	cursor: pointer;
+	height: 2.75rem;
+	left: 0;
+	padding: 0;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 100%;
+	z-index: 1;
+}
+
+.spectrogram-player__dot {
+	background: var(--section-text);
+	border: 0;
+	border-radius: 50%;
+	cursor: grab;
+	height: 0.55rem;
+	padding: 0;
+	position: absolute;
+	top: 50%;
+	touch-action: none;
+	transform: translate(-50%, -50%);
+	width: 0.55rem;
+	z-index: 2;
+}
+
+.spectrogram-player__dot::before {
+	content: '';
+	inset: -0.85rem;
+	position: absolute;
+}
+
+.spectrogram-player__dot--dragging {
+	cursor: grabbing;
+}
+
+.spectrogram-player__dot:focus-visible {
+	outline: 2px solid var(--section-text);
+	outline-offset: 3px;
 }
 
 @media (max-width: 640px) {

@@ -4,7 +4,7 @@
 	import type { AudioRecording } from '$lib/audio/types';
 	import { pickRandom } from '$lib/stampe/random';
 	import { base } from '$app/paths';
-	import AudioPlaybackControls from './AudioPlaybackControls.svelte';
+	import SpectrogramPlayer from './SpectrogramPlayer.svelte';
 	import './audio.css';
 
 	type Props = {
@@ -44,15 +44,11 @@
 				<p class="audio-recording__body">{preview.body}</p>
 			</div>
 
-			<AudioPlaybackControls src={preview.audioSrc} luogo={preview.luogo} />
-
-			<div class="audio__spectrogram-wrap">
-				<img
-					class="audio-recording__spectrogram"
-					src={preview.spectrogramSrc}
-					alt="Spettrogramma della registrazione a {preview.luogo}"
-				/>
-			</div>
+			<SpectrogramPlayer
+				src={preview.audioSrc}
+				spectrogramSrc={preview.spectrogramSrc}
+				luogo={preview.luogo}
+			/>
 		</article>
 	{/if}
 

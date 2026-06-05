@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { AudioRecording } from '$lib/audio/types';
-	import AudioPlaybackControls from './AudioPlaybackControls.svelte';
+	import SpectrogramPlayer from './SpectrogramPlayer.svelte';
 
 	type Props = {
 		recording: AudioRecording;
@@ -25,17 +25,11 @@
 		<p class="audio-recording__body">{recording.body}</p>
 	</div>
 
-	<AudioPlaybackControls
+	<SpectrogramPlayer
 		src={recording.audioSrc}
+		spectrogramSrc={recording.spectrogramSrc}
 		luogo={recording.luogo}
 		{shouldPause}
 		onBeforePlay={() => onActivate(recording.id)}
-	/>
-
-	<img
-		class="audio-recording__spectrogram"
-		src={recording.spectrogramSrc}
-		alt="Spettrogramma della registrazione a {recording.luogo}"
-		loading="lazy"
 	/>
 </article>
