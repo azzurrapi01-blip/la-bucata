@@ -4,6 +4,7 @@
 	import CategoryFilters from '$lib/components/ui/CategoryFilters.svelte';
 	import MediaGrid from '$lib/components/ui/MediaGrid.svelte';
 	import MediaLightbox from '$lib/components/ui/MediaLightbox.svelte';
+	import { imageSrcs, imageThumbs } from '$lib/media/optimized-image';
 	import { STAMPE_INTRO, STAMPE_TITLE } from '$lib/stampe/constants';
 	import type { StampeManifest } from '$lib/stampe/types';
 	import './stampe.css';
@@ -23,6 +24,8 @@
 		manifest.categories.find((category) => category.id === activeCategoryId) ?? manifest.categories[0]
 	);
 	const visibleImages = $derived(activeCategory?.images ?? []);
+	const visibleThumbs = $derived(imageThumbs(visibleImages));
+	const visibleSrcs = $derived(imageSrcs(visibleImages));
 
 	function selectCategory(id: string) {
 		if (id === activeCategoryId) return;
@@ -58,7 +61,7 @@
 		ariaLabel="Filtra stampe"
 	/>
 
-	<MediaGrid images={visibleImages} layout="grid-3" {fading} onImageClick={openLightbox}>
+	<MediaGrid images={visibleThumbs} layout="grid-3" {fading} onImageClick={openLightbox}>
 		{#snippet cell({ src, index })}
 			<StampeCard {src} onClick={() => openLightbox(index)} />
 		{/snippet}
@@ -66,7 +69,7 @@
 
 	<MediaLightbox
 		open={lightboxOpen}
-		images={visibleImages}
+		images={visibleSrcs}
 		index={lightboxIndex}
 		navigable={true}
 		imageAlt="Stampa botanica ingrandita"

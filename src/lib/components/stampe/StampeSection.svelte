@@ -4,18 +4,19 @@
 	import SectionHeading from '$lib/components/ui/SectionHeading.svelte';
 	import MediaGrid from '$lib/components/ui/MediaGrid.svelte';
 	import MediaLightbox from '$lib/components/ui/MediaLightbox.svelte';
+	import { imageSrcs, imageThumbs, type OptimizedImage } from '$lib/media/optimized-image';
 	import { STAMPE_CTA, STAMPE_INTRO, STAMPE_TITLE } from '$lib/stampe/constants';
 	import { pickRandom } from '$lib/stampe/random';
 	import { base } from '$app/paths';
 	import './stampe.css';
 
 	type Props = {
-		allImages: string[];
+		allImages: OptimizedImage[];
 	};
 
 	let { allImages }: Props = $props();
 
-	let previewImages = $state<string[]>([]);
+	let previewImages = $state<OptimizedImage[]>([]);
 	let lightboxOpen = $state(false);
 	let lightboxIndex = $state(0);
 
@@ -40,7 +41,7 @@
 	/>
 
 	{#if previewImages.length > 0}
-		<MediaGrid images={previewImages} layout="grid-2" class="stampe__grid--preview">
+		<MediaGrid images={imageThumbs(previewImages)} layout="grid-2" class="stampe__grid--preview">
 			{#snippet cell({ src, index })}
 				<StampeCard {src} onClick={() => openLightbox(index)} />
 			{/snippet}
@@ -51,7 +52,7 @@
 
 	<MediaLightbox
 		open={lightboxOpen}
-		images={previewImages}
+		images={imageSrcs(previewImages)}
 		index={lightboxIndex}
 		navigable={false}
 		imageAlt="Stampa botanica ingrandita"

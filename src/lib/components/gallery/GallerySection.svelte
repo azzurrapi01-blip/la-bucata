@@ -4,17 +4,18 @@
 	import MediaGrid from '$lib/components/ui/MediaGrid.svelte';
 	import MediaLightbox from '$lib/components/ui/MediaLightbox.svelte';
 	import { GALLERY_CTA, GALLERY_INTRO, GALLERY_TITLE } from '$lib/gallery/constants';
+	import { imageSrcs, imageThumbs, type OptimizedImage } from '$lib/media/optimized-image';
 	import { pickRandom } from '$lib/stampe/random';
 	import { base } from '$app/paths';
 	import './gallery.css';
 
 	type Props = {
-		allImages: string[];
+		allImages: OptimizedImage[];
 	};
 
 	let { allImages }: Props = $props();
 
-	let previewImages = $state<string[]>([]);
+	let previewImages = $state<OptimizedImage[]>([]);
 	let lightboxOpen = $state(false);
 	let lightboxIndex = $state(0);
 
@@ -40,7 +41,7 @@
 
 	{#if previewImages.length > 0}
 		<MediaGrid
-			images={previewImages}
+			images={imageThumbs(previewImages)}
 			layout="grid-2x2"
 			class="gallery__grid--preview"
 			imageAlt="Fotografia del percorso"
@@ -52,7 +53,7 @@
 
 	<MediaLightbox
 		open={lightboxOpen}
-		images={previewImages}
+		images={imageSrcs(previewImages)}
 		index={lightboxIndex}
 		navigable={true}
 		imageAlt="Fotografia del percorso ingrandita"

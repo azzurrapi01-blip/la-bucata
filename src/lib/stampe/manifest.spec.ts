@@ -24,7 +24,9 @@ describe('buildStampeManifest', () => {
 
 		expect(foglie).toBeDefined();
 		expect(foglie!.images.length).toBeGreaterThan(0);
-		expect(foglie!.images.every((src) => src.length > 0)).toBe(true);
+		expect(foglie!.images.every((image) => image.src.length > 0 && image.thumb.length > 0)).toBe(
+			true
+		);
 	});
 });
 

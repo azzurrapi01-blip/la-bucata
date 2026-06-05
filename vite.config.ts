@@ -1,9 +1,15 @@
 import { defineConfig } from 'vitest/config';
 import { playwright } from '@vitest/browser-playwright';
 import { sveltekit } from '@sveltejs/kit/vite';
+import { imagetools } from 'vite-imagetools';
 
 export default defineConfig({
-	plugins: [sveltekit()],
+	plugins: [
+		imagetools({
+			include: /^[^?]+\.(avif|gif|heif|jpe?g|png|tiff|webp)(\?.*)?$/i
+		}),
+		sveltekit()
+	],
 	test: {
 		expect: { requireAssertions: true },
 		projects: [

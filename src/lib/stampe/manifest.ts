@@ -1,9 +1,24 @@
+import type { OptimizedImage } from '$lib/media/optimized-image';
 import { CATEGORY_LABELS, CATEGORY_ORDER } from './constants';
 import type { StampeCategory, StampeManifest } from './types';
 
-const imageModules = import.meta.glob('/src/lib/content/stampe/**/*.{jpg,jpeg,png,webp}', {
+const fullImageModules = import.meta.glob('/src/lib/content/stampe/**/*.{jpg,jpeg,png,webp}', {
 	eager: true,
-	query: '?url',
+	query: {
+		w: '1200',
+		format: 'webp',
+		quality: '82'
+	},
+	import: 'default'
+}) as Record<string, string>;
+
+const thumbImageModules = import.meta.glob('/src/lib/content/stampe/**/*.{jpg,jpeg,png,webp}', {
+	eager: true,
+	query: {
+		w: '560',
+		format: 'webp',
+		quality: '78'
+	},
 	import: 'default'
 }) as Record<string, string>;
 
@@ -14,11 +29,14 @@ function categoryIdFromPath(path: string): string | null {
 	return path.match(CATEGORY_SEGMENT)?.[1] ?? null;
 }
 
-function listImages(categoryId: string): string[] {
-	return Object.entries(imageModules)
-		.filter(([path]) => IMAGE_EXT.test(path) && categoryIdFromPath(path) === categoryId)
-		.sort(([a], [b]) => a.localeCompare(b))
-		.map(([, url]) => url);
+function listImages(categoryId: string): OptimizedImage[] {
+	return Object.keys(fullImageModules)
+		.filter((path) => IMAGE_EXT.test(path) && categoryIdFromPath(path) === categoryId)
+		.sort((a, b) => a.localeCompare(b))
+		.map((path) => ({
+			src: fullImageModules[path],
+			thumb: thumbImageModules[path]
+		}));
 }
 
 export function buildStampeManifest(): StampeManifest {

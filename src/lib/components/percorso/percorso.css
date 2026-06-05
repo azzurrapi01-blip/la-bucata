@@ -15,8 +15,7 @@
 }
 
 .percorso__list,
-.percorso--preview .percorso-stage--preview,
-.percorso--preview .percorso__cta {
+.percorso--preview .percorso-stage--preview {
 	max-width: var(--section-content-max-width, 56rem);
 	width: 100%;
 }

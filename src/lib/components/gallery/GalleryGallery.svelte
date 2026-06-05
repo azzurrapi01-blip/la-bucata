@@ -4,6 +4,7 @@
 	import MediaGrid from '$lib/components/ui/MediaGrid.svelte';
 	import MediaLightbox from '$lib/components/ui/MediaLightbox.svelte';
 	import { GALLERY_INTRO, GALLERY_TITLE } from '$lib/gallery/constants';
+	import { imageSrcs } from '$lib/media/optimized-image';
 	import type { GalleryManifest } from '$lib/gallery/types';
 	import './gallery.css';
 
@@ -23,6 +24,7 @@
 			manifest.categories[0]
 	);
 	const visibleImages = $derived(activeCategory?.images ?? []);
+	const visibleSrcs = $derived(imageSrcs(visibleImages));
 
 	function selectCategory(id: string) {
 		if (id === activeCategoryId) return;
@@ -58,7 +60,7 @@
 	/>
 
 	<MediaGrid
-		images={visibleImages}
+		images={visibleSrcs}
 		layout="stack"
 		class="gallery__stack"
 		{fading}
@@ -68,7 +70,7 @@
 
 	<MediaLightbox
 		open={lightboxOpen}
-		images={visibleImages}
+		images={visibleSrcs}
 		index={lightboxIndex}
 		navigable={true}
 		imageAlt="Fotografia del percorso ingrandita"

@@ -1,24 +1,42 @@
+import type { OptimizedImage } from '$lib/media/optimized-image';
 import { CATEGORY_LABELS, CATEGORY_ORDER } from './constants';
 import type { GalleryCategory, GalleryManifest } from './types';
 
-const imageModules = import.meta.glob('/src/lib/content/gallery/**/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}', {
+const fullImageModules = import.meta.glob('/src/lib/content/gallery/**/*.JPG', {
 	eager: true,
-	query: '?url',
+	query: {
+		w: '1400',
+		format: 'webp',
+		quality: '82'
+	},
 	import: 'default'
 }) as Record<string, string>;
 
-const IMAGE_EXT = /\.(jpe?g|png|webp)$/i;
+const thumbImageModules = import.meta.glob('/src/lib/content/gallery/**/*.JPG', {
+	eager: true,
+	query: {
+		w: '640',
+		format: 'webp',
+		quality: '75'
+	},
+	import: 'default'
+}) as Record<string, string>;
+
+const IMAGE_EXT = /\.jpe?g$/i;
 const CATEGORY_SEGMENT = /\/gallery\/([^/]+)\//;
 
 function categoryIdFromPath(path: string): string | null {
 	return path.match(CATEGORY_SEGMENT)?.[1] ?? null;
 }
 
-function listImages(categoryId: string): string[] {
-	return Object.entries(imageModules)
-		.filter(([path]) => IMAGE_EXT.test(path) && categoryIdFromPath(path) === categoryId)
-		.sort(([a], [b]) => a.localeCompare(b))
-		.map(([, url]) => url);
+function listImages(categoryId: string): OptimizedImage[] {
+	return Object.keys(fullImageModules)
+		.filter((path) => IMAGE_EXT.test(path) && categoryIdFromPath(path) === categoryId)
+		.sort((a, b) => a.localeCompare(b))
+		.map((path) => ({
+			src: fullImageModules[path],
+			thumb: thumbImageModules[path]
+		}));
 }
 
 export function buildGalleryManifest(): GalleryManifest {
