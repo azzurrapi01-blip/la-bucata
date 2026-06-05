@@ -31,15 +31,29 @@
 	<p class="audio__intro">{AUDIO_INTRO}</p>
 
 	{#if preview}
-		<AudioPlaybackControls src={preview.audioSrc} luogo={preview.luogo} />
+		<article class="audio-recording audio-recording--preview" aria-labelledby="{preview.id}-title">
+			<h3 class="audio-recording__title" id="{preview.id}-title">
+				Registrazione {preview.number} — {preview.luogo}
+			</h3>
 
-		<div class="audio__spectrogram-wrap">
-			<img
-				class="audio-recording__spectrogram"
-				src={preview.spectrogramSrc}
-				alt="Spettrogramma della registrazione a {preview.luogo}"
-			/>
-		</div>
+			<div class="audio-recording__grid">
+				<div class="audio-recording__meta">
+					<p>{preview.data}</p>
+					<p>{preview.coordinateLabel}</p>
+				</div>
+				<p class="audio-recording__body">{preview.body}</p>
+			</div>
+
+			<AudioPlaybackControls src={preview.audioSrc} luogo={preview.luogo} />
+
+			<div class="audio__spectrogram-wrap">
+				<img
+					class="audio-recording__spectrogram"
+					src={preview.spectrogramSrc}
+					alt="Spettrogramma della registrazione a {preview.luogo}"
+				/>
+			</div>
+		</article>
 	{/if}
 
 	<a class="audio__cta" href={audioHref}>{AUDIO_PREVIEW_LINK}</a>

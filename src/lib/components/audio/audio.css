@@ -27,10 +27,19 @@
 
 .audio--preview .audio__title,
 .audio--preview .audio__intro,
+.audio--preview .audio-recording--preview,
 .audio--preview .audio-playback,
 .audio--preview .audio__spectrogram-wrap {
 	max-width: var(--section-content-max-width, 56rem);
 	width: 100%;
+}
+
+.audio-recording--preview .audio-recording__grid {
+	margin-bottom: var(--section-item-title-gap);
+}
+
+.audio-recording--preview .audio-playback {
+	margin-bottom: var(--section-item-title-gap);
 }
 
 .audio--preview .audio__intro {
