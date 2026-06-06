@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { parseAboutMarkdown, splitAboutParagraphs } from './parse-info';
 
 const sampleAbout = `---
-titolo: About
+titolo: Il progetto
 ---
 
 Primo paragrafo breve. Il percorso continua nel secondo blocco.`;
@@ -10,7 +10,7 @@ Primo paragrafo breve. Il percorso continua nel secondo blocco.`;
 describe('parseAboutMarkdown', () => {
 	it('reads the about title from frontmatter', () => {
 		const { frontmatter } = parseAboutMarkdown(sampleAbout);
-		expect(frontmatter.titolo).toBe('About');
+		expect(frontmatter.titolo).toBe('Il progetto');
 	});
 });
 

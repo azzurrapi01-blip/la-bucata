@@ -14,8 +14,9 @@
 	padding: var(--section-block-padding);
 }
 
-.percorso__list,
-.percorso--preview .percorso-stage--preview {
+.percorso-stage__title,
+.percorso-stage__grid,
+.percorso-stage__map-link {
 	max-width: var(--section-content-max-width, 56rem);
 	width: 100%;
 }
@@ -36,6 +37,7 @@
 
 .percorso__list {
 	margin: 0;
+	width: 100%;
 }
 
 .percorso__divider {

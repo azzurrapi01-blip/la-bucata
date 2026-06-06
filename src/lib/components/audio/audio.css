@@ -27,9 +27,9 @@
 
 .audio--preview .audio__title,
 .audio--preview .audio__intro,
-.audio--preview .audio-recording--preview,
-.audio--preview .spectrogram-player,
-.audio--preview .audio-playback {
+.audio-recording--preview .audio-recording__title,
+.audio-recording--preview .audio-recording__grid,
+.audio-recording--preview .audio-playback {
 	max-width: var(--section-content-max-width, 56rem);
 	width: 100%;
 }
@@ -59,8 +59,19 @@
 }
 
 .audio__title,
-.audio__intro,
+.audio__intro {
+	max-width: var(--section-content-max-width, 56rem);
+	width: 100%;
+}
+
 .audio__list {
+	margin: 0;
+	width: 100%;
+}
+
+.audio-recording__title,
+.audio-recording__grid,
+.audio-playback {
 	max-width: var(--section-content-max-width, 56rem);
 	width: 100%;
 }
@@ -79,10 +90,6 @@
 }
 
 .audio__intro p {
-	margin: 0;
-}
-
-.audio__list {
 	margin: 0;
 }
 
@@ -135,8 +142,6 @@
 	align-items: center;
 	display: flex;
 	margin: 0 0 var(--section-item-title-gap);
-	max-width: var(--section-content-max-width, 56rem);
-	width: 100%;
 }
 
 .audio-playback__play {
@@ -170,7 +175,6 @@
 }
 
 .spectrogram-player {
-	max-width: var(--section-content-max-width, 56rem);
 	width: 100%;
 }
 
