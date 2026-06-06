@@ -1,5 +1,6 @@
 export type RaccoltaImage = {
 	src: string;
+	thumb: string;
 	caption: string;
 };
 

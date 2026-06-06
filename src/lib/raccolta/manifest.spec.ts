@@ -15,6 +15,8 @@ describe('buildRaccoltaManifest', () => {
 		expect(manifest.months[0].id).toBe('febbraio');
 		expect(manifest.months[0].images.length).toBeGreaterThan(0);
 		expect(manifest.months[0].images[0].caption.length).toBeGreaterThan(0);
+		expect(manifest.months[0].images[0].src.length).toBeGreaterThan(0);
+		expect(manifest.months[0].images[0].thumb.length).toBeGreaterThan(0);
 	});
 
 	it('flattens all items for homepage sampling', () => {

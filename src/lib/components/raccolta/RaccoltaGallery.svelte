@@ -79,11 +79,11 @@
 					<p class="raccolta__month-label">{month.label}</p>
 				{/if}
 
-				<MediaGrid images={month.images.map((item) => item.src)} layout="grid-3">
+				<MediaGrid images={month.images.map((item) => item.thumb)} layout="grid-3">
 					{#snippet cell({ src, index })}
 						{@const item = month.images[index]}
 						<RaccoltaCard
-							src={item.src}
+							src={item.thumb}
 							caption={item.caption}
 							onClick={() => openLightbox(monthStartIndex(month.id) + index)}
 						/>

@@ -2,11 +2,28 @@ import { captionFromFilename } from './caption';
 import { MONTH_LABELS, MONTH_ORDER } from './constants';
 import type { RaccoltaCategory, RaccoltaImage, RaccoltaManifest, RaccoltaMonth } from './types';
 
-const imageModules = import.meta.glob(
-	'/src/lib/content/raccolta/**/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}',
+const fullImageModules = import.meta.glob(
+	'/src/lib/content/raccolta/**/*.{jpg,jpeg,JPG,JPEG,png,PNG,webp,WEBP}',
 	{
 		eager: true,
-		query: '?url',
+		query: {
+			w: '1200',
+			format: 'webp',
+			quality: '82'
+		},
+		import: 'default'
+	}
+) as Record<string, string>;
+
+const thumbImageModules = import.meta.glob(
+	'/src/lib/content/raccolta/**/*.{jpg,jpeg,JPG,JPEG,png,PNG,webp,WEBP}',
+	{
+		eager: true,
+		query: {
+			w: '640',
+			format: 'webp',
+			quality: '75'
+		},
 		import: 'default'
 	}
 ) as Record<string, string>;
@@ -23,11 +40,12 @@ function basenameFromPath(path: string): string {
 }
 
 function listMonthImages(monthId: string): RaccoltaImage[] {
-	return Object.entries(imageModules)
-		.filter(([path]) => IMAGE_EXT.test(path) && monthIdFromPath(path) === monthId)
-		.sort(([a], [b]) => a.localeCompare(b))
-		.map(([path, src]) => ({
-			src,
+	return Object.keys(fullImageModules)
+		.filter((path) => IMAGE_EXT.test(path) && monthIdFromPath(path) === monthId)
+		.sort((a, b) => a.localeCompare(b))
+		.map((path) => ({
+			src: fullImageModules[path],
+			thumb: thumbImageModules[path],
 			caption: captionFromFilename(basenameFromPath(path))
 		}));
 }

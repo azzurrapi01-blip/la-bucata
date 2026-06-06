@@ -26,6 +26,7 @@
 
 	const raccoltaHref = `${base.replace(/\/$/, '')}/raccolta`;
 
+	const previewThumbs = $derived(previewItems.map((item) => item.thumb));
 	const previewSrcs = $derived(previewItems.map((item) => item.src));
 
 	function openLightbox(index: number) {
@@ -44,14 +45,14 @@
 
 	{#if previewItems.length > 0}
 		<MediaGrid
-			images={previewSrcs}
+			images={previewThumbs}
 			layout="grid-2x2"
 			class="raccolta__grid--preview"
 		>
 			{#snippet cell({ index })}
 				{@const item = previewItems[index]}
 				<RaccoltaCard
-					src={item.src}
+					src={item.thumb}
 					caption={item.caption}
 					onClick={() => openLightbox(index)}
 				/>
