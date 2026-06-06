@@ -2,13 +2,18 @@ import { describe, expect, it } from 'vitest';
 import { buildGalleryManifest } from './manifest';
 
 describe('buildGalleryManifest', () => {
-	it('includes Tutte as first category with images from gallery/tutte/', () => {
+	it('includes Tutte as first virtual category combining other filters', () => {
 		const manifest = buildGalleryManifest();
 
 		expect(manifest.categories[0].id).toBe('tutte');
 		expect(manifest.categories[0].label).toBe('Tutte');
 		expect(manifest.categories[0].images.length).toBeGreaterThan(0);
 		expect(manifest.allImages).toEqual(manifest.categories[0].images);
+
+		const sourceCount = manifest.categories
+			.filter((category) => category.id !== 'tutte')
+			.reduce((sum, category) => sum + category.images.length, 0);
+		expect(manifest.categories[0].images).toHaveLength(sourceCount);
 	});
 
 	it('includes area-urbana when folder has images', () => {

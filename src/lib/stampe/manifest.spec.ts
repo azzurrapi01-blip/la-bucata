@@ -2,13 +2,18 @@ import { describe, expect, it } from 'vitest';
 import { buildStampeManifest } from './manifest';
 
 describe('buildStampeManifest', () => {
-	it('includes Tutte as first category with images from $lib/content/stampe/tutte/', () => {
+	it('includes Tutte as first virtual category combining other filters', () => {
 		const manifest = buildStampeManifest();
 
 		expect(manifest.categories[0].id).toBe('tutte');
 		expect(manifest.categories[0].label).toBe('Tutte');
 		expect(manifest.categories[0].images.length).toBeGreaterThan(0);
 		expect(manifest.allImages).toEqual(manifest.categories[0].images);
+
+		const sourceCount = manifest.categories
+			.filter((category) => category.id !== 'tutte')
+			.reduce((sum, category) => sum + category.images.length, 0);
+		expect(manifest.categories[0].images).toHaveLength(sourceCount);
 	});
 
 	it('excludes empty or missing categories like erbe', () => {

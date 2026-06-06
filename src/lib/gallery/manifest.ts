@@ -2,7 +2,9 @@ import type { OptimizedImage } from '$lib/media/optimized-image';
 import { CATEGORY_LABELS, CATEGORY_ORDER } from './constants';
 import type { GalleryCategory, GalleryManifest } from './types';
 
-const fullImageModules = import.meta.glob('/src/lib/content/gallery/**/*.JPG', {
+const fullImageModules = import.meta.glob(
+	'/src/lib/content/gallery/{area-urbana,area-semi-urbana,area-naturale}/**/*.JPG',
+	{
 	eager: true,
 	query: {
 		w: '1400',
@@ -12,7 +14,9 @@ const fullImageModules = import.meta.glob('/src/lib/content/gallery/**/*.JPG', {
 	import: 'default'
 }) as Record<string, string>;
 
-const thumbImageModules = import.meta.glob('/src/lib/content/gallery/**/*.JPG', {
+const thumbImageModules = import.meta.glob(
+	'/src/lib/content/gallery/{area-urbana,area-semi-urbana,area-naturale}/**/*.JPG',
+	{
 	eager: true,
 	query: {
 		w: '640',
@@ -40,9 +44,8 @@ function listImages(categoryId: string): OptimizedImage[] {
 }
 
 export function buildGalleryManifest(): GalleryManifest {
-	const allImages = listImages('tutte');
-
-	const categories = (CATEGORY_ORDER as readonly string[])
+	const sourceCategories = (CATEGORY_ORDER as readonly string[])
+		.filter((id) => id !== 'tutte')
 		.map((id) => {
 			const images = listImages(id);
 			if (images.length === 0) return null;
@@ -54,6 +57,17 @@ export function buildGalleryManifest(): GalleryManifest {
 			} satisfies GalleryCategory;
 		})
 		.filter((category): category is GalleryCategory => category !== null);
+
+	const allImages = sourceCategories.flatMap((category) => category.images);
+
+	const categories: GalleryCategory[] = [
+		{
+			id: 'tutte',
+			label: CATEGORY_LABELS.tutte,
+			images: allImages
+		},
+		...sourceCategories
+	];
 
 	return { categories, allImages };
 }
