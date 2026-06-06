@@ -2,6 +2,8 @@
 	--section-bg: #e8d6b9;
 	--section-text: #000000;
 	--play-button-bg: #ffffff;
+	--section-cta-bg: var(--section-text);
+	--section-cta-color: var(--play-button-bg);
 
 	background: var(--section-bg);
 	border-radius: var(--section-card-radius, 24px);
@@ -46,16 +48,6 @@
 	font-size: 1.125rem;
 	line-height: 1.6;
 	margin: 0 0 var(--section-preview-intro-gap);
-}
-
-.audio--preview .audio__cta {
-	background: var(--section-text);
-	color: var(--play-button-bg);
-	display: inline-block;
-	font: inherit;
-	margin-top: 1.5rem;
-	padding: 0.75rem 1.25rem;
-	text-decoration: none;
 }
 
 .audio__title,

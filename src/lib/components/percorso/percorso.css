@@ -3,6 +3,8 @@
 	--section-text: #000000;
 	--cta-bg: #000000;
 	--cta-text: #ffffff;
+	--section-cta-bg: var(--cta-bg);
+	--section-cta-color: var(--cta-text);
 
 	background: var(--section-bg);
 	border-radius: var(--section-card-radius, 24px);
@@ -19,20 +21,6 @@
 .percorso-stage__map-link {
 	max-width: var(--section-content-max-width, 56rem);
 	width: 100%;
-}
-
-.percorso-stage--preview {
-	margin-bottom: var(--section-preview-intro-gap);
-}
-
-.percorso__cta {
-	background: var(--cta-bg);
-	color: var(--cta-text);
-	display: inline-block;
-	font: inherit;
-	margin-top: 1.5rem;
-	padding: 0.75rem 1.25rem;
-	text-decoration: none;
 }
 
 .percorso__list {

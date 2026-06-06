@@ -9,6 +9,34 @@
 	--section-item-title-gap: 1.25rem;
 	--section-item-title-size: clamp(1.25rem, 2.5vw, 1.75rem);
 	--section-item-title-line-height: 1.25;
+	--section-cta-padding: 0.75rem 1.25rem;
+	--section-cta-gap: 2rem;
+	--section-cta-bg: #000000;
+	--section-cta-color: #ffffff;
+}
+
+section.audio .audio__cta,
+section.percorso .percorso__cta,
+section.gallery .gallery__cta,
+section.stampe .stampe__cta,
+section.raccolta .raccolta__cta {
+	background: var(--section-cta-bg);
+	box-sizing: border-box;
+	color: var(--section-cta-color);
+	display: inline-block;
+	font: inherit;
+	font-size: 1rem;
+	line-height: 1.4;
+	padding: var(--section-cta-padding);
+	text-decoration: none;
+}
+
+section.audio.audio--preview .audio-recording--preview,
+section.percorso.percorso--preview .percorso-stage--preview,
+section.gallery .gallery__grid--preview,
+section.stampe .stampe__grid--preview,
+section.raccolta .raccolta__grid--preview {
+	margin-bottom: var(--section-cta-gap);
 }
 
 section.audio .audio__title,
