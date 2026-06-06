@@ -61,8 +61,8 @@
 
 	<MediaGrid
 		images={visibleSrcs}
-		layout="stack"
-		class="gallery__stack"
+		layout="grid-2"
+		class="gallery__grid"
 		{fading}
 		imageAlt="Fotografia del percorso"
 		onImageClick={openLightbox}
