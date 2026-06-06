@@ -49,6 +49,24 @@ html {
 	scroll-behavior: smooth;
 }
 
+@media (min-width: 901px) {
+	.home__sections > .audio,
+	.home__sections > .percorso,
+	.home__sections > .stampe {
+		--section-content-max-width: 100%;
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.home__sections > .audio > *,
+	.home__sections > .percorso > *,
+	.home__sections > .stampe > * {
+		max-width: var(--section-content-max-width);
+		width: 100%;
+	}
+}
+
 @media (max-width: 900px) {
 	.home-page {
 		--home-block-height: clamp(24rem, 55vh, 32rem);
